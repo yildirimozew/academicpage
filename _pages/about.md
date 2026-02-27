@@ -7,22 +7,18 @@ redirect_from:
   - /about.html
 ---
 
-I am a Computer Science Master's student at [ETH Zurich](https://ethz.ch/en.html), specializing in the intersection of Reinforcement Learning and high-performance systems. I am currently researching multi-stage RL (DPO, GRPO) while focusing on hardware acceleration and scalable ML infrastructure.
+I'm a CS Master's student at [ETH Zurich](https://ethz.ch/en.html), working on retrieval, reinforcement learning and how to make ML systems go faster. Right now I'm training LLMs to be Socratic tutors (the kind that help students think instead of just giving away the answer) using multi-stage RL (DPO, GRPO).
 
-Previously, I completed my Bachelor's degree in Computer Engineering at [Middle East Technical University (METU)](https://www.metu.edu.tr/) where I graduated 6th out of 286 students with a GPA of 3.91/4.0. During my undergraduate studies, I spent a semester at [Saarland University](https://www.uni-saarland.de/) / Max Planck Institute for Informatics through the Erasmus Exchange Programme.
+Before Zurich, I did my undergrad in Computer Engineering at [METU](https://www.metu.edu.tr/) in Ankara (3.91/4.0, 6th out of 286), and spent a semester at [Saarland University](https://www.uni-saarland.de/) / Max Planck Institute for Informatics through Erasmus.
 
-I'm a builder at heart with a track record of winning hackathons and a strong interest in applying optimization techniques to complex problems like time-series and quant research.
+Outside of research, I like building things. I've won a couple of hackathons, and I keep building stuff that I'm interested in.
 
-## Research Interests
+## What I work on
 
-- Reinforcement Learning from Human Feedback (RLHF) and policy optimization (DPO, GRPO, PPO)
-- Large Language Model alignment and evaluation
-- Hardware acceleration for data processing
-- Scalable ML infrastructure and cloud computing
+Language Model policy optimization (DPO, GRPO, PPO), AI for Education, Retrieval Systems, LLM alignment and evaluation, scalable ML, systems for ML.
 
-## Recent News
+## Recent news
 
-- **Feb 2026**: Continuing research on Socratic Tutoring LLM via Multi-Stage Policy Optimization at ETH Zurich under Prof. Mrinmaya Sachan.
-- **Sep 2025**: Started MSc in Computer Science at ETH Zurich.
-- **May 2025**: Published [OpenEthics](https://arxiv.org/abs/2505.16036) -- a comprehensive ethical evaluation of open-source generative LLMs.
-- **Jul 2025**: Graduated from METU with BSc in Computer Engineering (6th/286).
+- **Sep 2025** -- Started my MSc at ETH Zurich.
+- **May 2025** -- Published [OpenEthics](https://arxiv.org/abs/2505.16036), where we evaluated how open-source LLMs handle ethical reasoning in Turkish and English.
+- **Jul 2025** -- Graduated from METU (6th/286).
