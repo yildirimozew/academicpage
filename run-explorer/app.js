@@ -260,7 +260,7 @@ function renderExplorer() {
     };
     if (continuous) {
       trace.marker.colorscale = "Viridis";
-      trace.marker.colorbar = { title: "Causal<br>BPB", thickness: 12, len: 0.56, x: 1.02, tickfont: { color: "#8295aa" }, titlefont: { color: "#8295aa" } };
+      trace.marker.colorbar = { title: "Causal<br>BPB", thickness: 12, len: 0.56, x: 1.02, tickfont: { color: "#a1a1aa" }, titlefont: { color: "#a1a1aa" } };
       trace.marker.showscale = true;
       trace.showlegend = false;
     }
@@ -269,11 +269,11 @@ function renderExplorer() {
   });
 
   const axisLayout = (key) => ({
-    title: { text: AXES[key].label, font: { color: "#9db1c5", size: 12 } },
+    title: { text: AXES[key].label, font: { color: "#d4d4d8", size: 12 } },
     type: AXES[key].scale,
-    gridcolor: "rgba(151,178,202,0.12)",
-    zerolinecolor: "rgba(151,178,202,0.18)",
-    tickfont: { color: "#71869a", size: 10 },
+    gridcolor: "rgba(255,255,255,0.08)",
+    zerolinecolor: "rgba(255,255,255,0.12)",
+    tickfont: { color: "#71717a", size: 10 },
     exponentformat: "SI",
     showspikes: false,
   });
@@ -283,9 +283,9 @@ function renderExplorer() {
     margin: state.dimensions === 3 ? { l: 0, r: 0, t: 18, b: 0 } : { l: 74, r: colorKey === "causalBpb" ? 76 : 24, t: 24, b: 62 },
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { family: "Inter, ui-sans-serif, sans-serif", color: "#9db1c5" },
-    hoverlabel: { bgcolor: "#102236", bordercolor: "rgba(110,231,208,0.28)", font: { color: "#dce9f6", size: 12 } },
-    legend: { orientation: "h", yanchor: "bottom", y: 1.01, xanchor: "left", x: 0, font: { size: 10, color: "#8295aa" }, bgcolor: "rgba(0,0,0,0)" },
+    font: { family: "ui-sans-serif, system-ui, sans-serif", color: "#a1a1aa" },
+    hoverlabel: { bgcolor: "#18181b", bordercolor: "#3f3f46", font: { color: "#fafafa", size: 12 } },
+    legend: { orientation: "h", yanchor: "bottom", y: 1.01, xanchor: "left", x: 0, font: { size: 10, color: "#a1a1aa" }, bgcolor: "rgba(0,0,0,0)" },
     showlegend: colorKey !== "causalBpb",
   };
 
@@ -379,11 +379,11 @@ function renderParallel() {
       color: colorValues,
       colorscale,
       showscale: true,
-      colorbar: { title: colorTitle, thickness: 12, len: 0.55, tickfont: { color: "#8295aa" }, titlefont: { color: "#8295aa" } },
+      colorbar: { title: colorTitle, thickness: 12, len: 0.55, tickfont: { color: "#a1a1aa" }, titlefont: { color: "#a1a1aa" } },
     },
-    labelfont: { color: "#a8bbcd", size: 11 },
-    tickfont: { color: "#70869b", size: 9 },
-    rangefont: { color: "#70869b", size: 9 },
+    labelfont: { color: "#d4d4d8", size: 11 },
+    tickfont: { color: "#71717a", size: 9 },
+    rangefont: { color: "#71717a", size: 9 },
   };
 
   const layout = {
@@ -391,7 +391,7 @@ function renderParallel() {
     margin: { l: 54, r: 72, t: 42, b: 42 },
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
-    font: { family: "Inter, ui-sans-serif, sans-serif", color: "#9db1c5" },
+    font: { family: "ui-sans-serif, system-ui, sans-serif", color: "#a1a1aa" },
   };
   Plotly.react(el.parallelPlot, [trace], layout, { responsive: true, displaylogo: false });
 }
