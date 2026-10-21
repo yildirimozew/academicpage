@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Interactive explorer for dual-objective language-model training runs." />
+    <meta name="theme-color" content="#07111f" />
+    <title>Dual-Objective Run Explorer · Yıldırım Özen</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@4.1.2/plotly.min.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Back to yildirimozen.com">
+        <span class="brand-mark">YÖ</span>
+        <span>yildirimozen.com</span>
+      </a>
+      <div class="snapshot" id="snapshot-label">Loading run snapshot…</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Dual-objective language modelling</p>
+          <h1>Run Explorer</h1>
+          <p class="hero-copy">
+            Inspect every language-level observation across the W&amp;B archive. Choose two or three axes,
+            filter the evidence, and open any point at its source run.
+          </p>
+        </div>
+        <div class="hero-status" role="status">
+          <span class="status-dot"></span>
+          <span id="load-status">Loading data</span>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Filtered dataset summary">
+        <article><span id="metric-points">—</span><small>language points</small></article>
+        <article><span id="metric-runs">—</span><small>W&amp;B runs</small></article>
+        <article><span id="metric-languages">—</span><small>languages</small></article>
+        <article><span id="metric-experiments">—</span><small>experiment families</small></article>
+      </section>
+
+      <nav class="view-tabs" aria-label="Explorer views">
+        <button class="view-tab active" data-view="explorer" aria-selected="true">Axis explorer</button>
+        <button class="view-tab" data-view="dimensions" aria-selected="false">All dimensions</button>
+      </nav>
+
+      <section id="view-explorer" class="view-panel active">
+        <aside class="control-panel">
+          <div class="control-heading">
+            <div>
+              <p class="section-kicker">Plot design</p>
+              <h2>Choose the space</h2>
+            </div>
+            <button id="reset-button" class="text-button">Reset</button>
+          </div>
+
+          <div class="segmented" aria-label="Number of axes">
+            <button data-dimensions="2" class="active">2 axes</button>
+            <button data-dimensions="3">3 axes</button>
+          </div>
+
+          <label class="field">
+            <span>X axis</span>
+            <select id="x-axis"></select>
+          </label>
+          <label class="field">
+            <span>Y axis</span>
+            <select id="y-axis"></select>
+          </label>
+          <label class="field" id="z-field" hidden>
+            <span>Z axis</span>
+            <select id="z-axis"></select>
+          </label>
+          <label class="field">
+            <span>Color</span>
+            <select id="color-axis">
+              <option value="language">Language</option>
+              <option value="causalBpb">Causal BPB</option>
+              <option value="bpbStatus">BPB status</option>
+              <option value="experiment">Experiment family</option>
+            </select>
+          </label>
+
+          <div class="filter-block">
+            <div class="filter-title">
+              <span>Evidence status</span>
+              <button id="status-all" class="micro-button">All</button>
+            </div>
+            <div id="status-options" class="check-list"></div>
+          </div>
+
+          <div class="filter-block">
+            <label class="field compact">
+              <span>Experiment family</span>
+              <select id="experiment-filter"><option value="all">All families</option></select>
+            </label>
+            <label class="field compact">
+              <span>Run state</span>
+              <select id="state-filter"><option value="all">All states</option></select>
+            </label>
+          </div>
+
+          <div class="filter-block language-block">
+            <div class="filter-title">
+              <span>Languages</span>
+              <div><button id="languages-all" class="micro-button">All</button><button id="languages-none" class="micro-button">None</button></div>
+            </div>
+            <input id="language-search" class="search" type="search" placeholder="Find a language…" />
+            <div id="language-options" class="language-list"></div>
+          </div>
+
+          <button id="download-button" class="download-button">Download filtered CSV</button>
+        </aside>
+
+        <div class="visual-panel">
+          <div class="plot-header">
+            <div>
+              <p class="section-kicker">Interactive chart</p>
+              <h2 id="plot-title">Alpha × repetition</h2>
+            </div>
+            <p id="plot-caption" class="plot-caption">Scroll to zoom. Drag to inspect. Click a point for its run.</p>
+          </div>
+          <div id="main-plot" class="plot" aria-label="Interactive run scatter plot"></div>
+          <div id="empty-state" class="empty-state" hidden>
+            <strong>No points match this view.</strong>
+            <span>Try another evidence status, language, or axis combination.</span>
+          </div>
+          <div id="point-detail" class="point-detail">
+            <span class="detail-hint">Select a point to inspect the language, configuration, evidence status, and source run.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-dimensions" class="view-panel dimensions-view">
+        <div class="dimensions-intro">
+          <div>
+            <p class="section-kicker">All dimensions at once</p>
+            <h2>Parallel configuration map</h2>
+          </div>
+          <p>
+            Each line is one language-level observation. Every vertical rail is a measured or derived dimension;
+            a line’s route is the complete configuration. Drag on any rail to brush a range and expose interactions.
+          </p>
+        </div>
+        <div class="dimension-toolbar">
+          <label class="field inline-field">
+            <span>Lines colored by</span>
+            <select id="parallel-color">
+              <option value="causalBpb">Causal BPB</option>
+              <option value="language">Language index</option>
+              <option value="alpha">Alpha</option>
+            </select>
+          </label>
+          <span id="parallel-note">Uses the same evidence, family, state, and language filters as the axis explorer.</span>
+        </div>
+        <div id="parallel-plot" class="parallel-plot" aria-label="Parallel coordinates of all run dimensions"></div>
+
+        <div class="coverage-section">
+          <div>
+            <p class="section-kicker">Data coverage</p>
+            <h2>What is actually measured</h2>
+          </div>
+          <div id="coverage-grid" class="coverage-grid"></div>
+        </div>
+      </section>
+
+      <section class="method-note">
+        <div class="note-mark">!</div>
+        <div>
+          <h2>Read the evidence status first</h2>
+          <p>
+            This snapshot deliberately retains legacy, partial, and debugging runs. “Legacy / bugged BPB” points are
+            useful for coverage and provenance but should not support causal-BPB conclusions. Raw BPB is also not
+            directly comparable across languages without accounting for corpus and tokenizer differences.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Dual-objective training research · W&amp;B snapshot</span>
+      <a href="https://wandb.ai/nevena-denic-epfl/hybrid_language_modelling" target="_blank" rel="noreferrer">Open W&amp;B project ↗</a>
+    </footer>
+  </body>
+</html>
