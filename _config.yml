@@ -12,7 +12,7 @@ site_theme               : "default" # The available themes options are "default
 title                    : "Yıldırım Özen"
 title_separator          : "-"
 name                     : &name "Yıldırım Özen"
-description              : &description "CS Master's student at ETH Zurich specializing in Reinforcement Learning and high-performance systems."
+description              : &description "ETH Zurich computer science MSc student and EPFL NLP Lab research assistant working on multilingual language models and ML systems."
 url                      : https://yildirimozen.com
 baseurl                  : ""
 repository               : "yildirimozew/yildirimozew.github.io"
@@ -25,9 +25,9 @@ author:
   avatar           : "profile.png"
   name             : "Yıldırım Özen"
   pronouns         :
-  bio              : "CS Master's student at ETH Zurich. Reinforcement Learning, high-performance systems, and scalable ML infrastructure."
+  bio              : "Computer Science MSc student at ETH Zurich and research assistant at the EPFL NLP Lab."
   location         : "Zurich, Switzerland"
-  employer         : "ETH Zurich"
+  employer         : "ETH Zurich / EPFL"
   uri              :
   email            : "yildirimozew@hotmail.com"
 
@@ -168,6 +168,20 @@ exclude:
   - .github
   - .jekyll-assets-cache
   - .sass-cache
+  - _posts
+  - _pages/archive-layout-with-content.md
+  - _pages/markdown.md
+  - _pages/non-menu-page.md
+  - _pages/talkmap.html
+  - cv.tex
+  - files/bibtex1.bib
+  - files/paper*.pdf
+  - files/slides*.pdf
+  - markdown_generator
+  - talkmap
+  - talkmap.ipynb
+  - talkmap.py
+  - talkmap_out.ipynb
   - assets/js/_main.js
   - assets/js/plugins
   - assets/js/vendor

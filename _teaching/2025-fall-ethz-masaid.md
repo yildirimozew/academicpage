@@ -8,9 +8,6 @@ date: 2025-09-01
 location: "Zurich, Switzerland"
 ---
 
-Teaching Assistant for the ETH Zurich MAS in Applied Information and Data Science (AID) program, which is designed to enhance managers' technical understanding of machine learning.
+I was a teaching assistant for the ETH Zurich MAS AID program from September 2025 to July 2026. I designed and taught a five-week AI curriculum for working professionals, with lectures and hands-on sessions.
 
-**Key contributions:**
-- Developed a multilingual Legal RAG system indexing 60k+ sources, implementing an evaluation pipeline using keyword matching and LLM judges.
-- Created 5 weeks of curriculum and coding notebooks to guide students.
-- Engineered synthetic patient data for an EHR classification project, optimizing signal density to ensure meaningful learning outcomes during model training.
+I also built a multilingual legal retrieval-augmented generation system covering more than 60,000 sources, with automated evaluation.

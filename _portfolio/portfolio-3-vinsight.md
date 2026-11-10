@@ -2,6 +2,7 @@
 title: "Vinsight"
 excerpt: "Won the User Experience Award at the Vakıfbank Hack to the Future Hackathon. A hub for organizational memory with local document and voice memo querying."
 collection: portfolio
+published: false
 ---
 
 Won the **User Experience Award** at the Vakıfbank Hack to the Future Hackathon.

@@ -2,6 +2,7 @@
 title: "Cherry Merchant Finder App"
 excerpt: "Won the 2025 Cherry New Grad Hackathon. An interactive map-based interface to help consumers find merchants offering Cherry's services."
 collection: portfolio
+published: false
 ---
 
 Won the **2025 Cherry New Grad Hackathon**.

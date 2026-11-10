@@ -1,9 +1,7 @@
 ---
 title: "Reinforcement Learning Methods Research in Low Resource Languages"
-excerpt: "Applied RLHF techniques (GRPO, PPO) to optimize LLMs for low-resource languages, outperforming SFT and standard baselines. Ranked 4th/35."
+excerpt: "Compared supervised fine-tuning, GRPO, and PPO on Turkish product question answering."
 collection: portfolio
 ---
 
-Applied RLHF techniques (GRPO, PPO) to optimize Large Language Models for low-resource languages, outperforming Supervised Fine-Tuning (SFT) and standard baselines.
-
-- Ranked 4th out of 35 research projects after developing an automated LLM-judge evaluation framework to determine the most effective reinforcement learning strategies.
+I collected Turkish product questions and answers to fine-tune a small language model. In these experiments, supervised fine-tuning outperformed GRPO and PPO. I presented the results as a poster.

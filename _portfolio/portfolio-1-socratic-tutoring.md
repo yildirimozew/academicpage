@@ -1,9 +1,9 @@
 ---
 title: "Socratic Tutoring LLM via Multi-Stage Policy Optimization"
-excerpt: "Fine-tuning open-source LLMs (SFT, Offline DPO, Online GRPO) to align them as Socratic tutors that guide students without prematurely leaking answers."
+excerpt: "Fine-tuned and evaluated open-source language models as Socratic tutors for coding and mathematics."
 collection: portfolio
 ---
 
-Working on fine-tuning an open-source model using multi-stage policy optimization (SFT, Offline DPO, Online GRPO) to align open-source LLMs as Socratic tutors that guide students without prematurely leaking answers.
+At ETH Zurich, I fine-tuned one coding tutor and two mathematics tutors using GRPO and veRL. I compared a model trained with a reward for reasoning against a baseline to assess its effect on Socratic tutoring.
 
-Under the supervision of Prof. Mrinmaya Sachan and Jakup Macina at ETH Zurich.
+Supervised by Prof. Mrinmaya Sachan and Jakub Macina.

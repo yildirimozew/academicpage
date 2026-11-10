@@ -7,18 +7,17 @@ redirect_from:
   - /about.html
 ---
 
-I'm a CS Master's student at [ETH Zurich](https://ethz.ch/en.html), working on retrieval, reinforcement learning and how to make ML systems go faster. Right now I'm training LLMs to be Socratic tutors (the kind that help students think instead of just giving away the answer) using multi-stage RL (DPO, GRPO).
+I'm an MSc student in Computer Science at [ETH Zurich](https://ethz.ch/en.html) and a research assistant at the [EPFL NLP Lab](https://nlp.epfl.ch/), where I work on multilingual language model pretraining and systems for machine learning.
 
-Before Zurich, I did my undergrad in Computer Engineering at [METU](https://www.metu.edu.tr/) in Ankara (3.91/4.0, 6th out of 286), and spent a semester at [Saarland University](https://www.uni-saarland.de/) / Max Planck Institute for Informatics through Erasmus.
-
-Outside of research, I like building things. I've won a couple of hackathons, and I keep building stuff that I'm interested in.
+My recent work includes fine-tuning and evaluating Socratic tutors for coding and mathematics at ETH Zurich and applying machine learning to laser-induced damage detection at ELI Beamlines. I earned my BSc in Computer Engineering at [METU](https://www.metu.edu.tr/) and spent an Erasmus semester at [Saarland University](https://www.uni-saarland.de/).
 
 ## What I work on
 
-Language Model policy optimization (DPO, GRPO, PPO), AI for Education, Retrieval Systems, LLM alignment and evaluation, scalable ML, systems for ML.
+Multilingual language model pretraining, reinforcement learning for language models, LLM evaluation, and high-performance systems for machine learning.
 
 ## Recent news
 
+- **Aug 2026** -- Joined the EPFL NLP Lab as a research assistant.
+- **Jul 2026** -- Started a research internship at ELI Beamlines on laser-induced damage detection.
+- **Jan 2026** -- Posted a revised version of [OpenEthics](https://arxiv.org/abs/2505.16036), our evaluation of open-source language models in Turkish and English.
 - **Sep 2025** -- Started my MSc at ETH Zurich.
-- **May 2025** -- Published [OpenEthics](https://arxiv.org/abs/2505.16036), where we evaluated how open-source LLMs handle ethical reasoning in Turkish and English.
-- **Jul 2025** -- Graduated from METU (6th/286).
