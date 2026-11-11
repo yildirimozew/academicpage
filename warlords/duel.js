@@ -26,7 +26,7 @@ function network(parameters) {
     const first = layer(105, 96, true);
     const second = layer(96, 96, true);
     const actor = layer(96, 28, false);
-    if (offset !== parameters.length) throw new Error("Invalid Agent B checkpoint");
+    if (offset !== parameters.length) throw new Error("Invalid AI checkpoint");
     return (features, cooldowns, kills) => {
         if (cooldowns[0] > 0) return null;
         const logits = actor(second(first(features)));
@@ -79,11 +79,11 @@ function observation(units, tick, ours, theirs, kills, lane, selected, bar, cool
 }
 
 async function start() {
-    const response = await fetch("agent.bin");
-    if (!response.ok) throw new Error("Could not load Agent B");
+    const response = await fetch("agent.bin?v=bcc39c62");
+    if (!response.ok) throw new Error("Could not load the AI opponent");
     const choose = network(new Float32Array(await response.arrayBuffer()));
     await api.load({url: "warlords-duel.swf", autoplay: "on", unmuteOverlay: "hidden", allowScriptAccess: true});
-    status.textContent = "Agent B is ready. Start a 2 Player Battle.";
+    status.textContent = "AI opponent is ready. Start a 2 Player Battle.";
     let previous = -1;
     let pending = null;
     let moves = 0;
@@ -93,20 +93,20 @@ async function start() {
             previous = -1;
             pending = null;
             moves = 0;
-            status.textContent = "Agent B is ready. Start a 2 Player Battle.";
+            status.textContent = "AI opponent is ready. Start a 2 Player Battle.";
             return;
         }
         const [tickText, own, opposing, winner, chargedText, killsText, laneText, selectedText, barText, ...units] = row.split("|");
         const [tick, charged, kills, lane, selected, bar] = [tickText, chargedText, killsText, laneText, selectedText, barText].map(Number);
         if (winner !== "undefined") {
-            status.textContent = winner === "left" ? "You won." : "Agent B won.";
+            status.textContent = winner === "left" ? "You won." : "The AI won.";
             pending = null;
             return;
         }
         if (tick === previous) return;
         if (tick < previous) { pending = null; moves = 0; }
         previous = tick;
-        status.textContent = `Agent B is playing the right side · ${moves} deployments`;
+        status.textContent = `AI opponent is playing the right side · ${moves} deployments`;
         const cooldowns = [50, 70, 70].map(recharge => Math.max(0, recharge - charged));
         if (!pending && tick % 8 === 0 && Number.isFinite(bar)) {
             pending = choose(observation(units, tick, Number(own), Number(opposing),
