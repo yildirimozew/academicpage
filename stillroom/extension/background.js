@@ -1,5 +1,7 @@
 "use strict";
 
+importScripts("deepseek.js");
+
 const siteOrigins = new Set([
   "https://stillroom-instagram-digest.mildtitan4.chatgpt.site",
   "https://stillroom.yildirimozen.com",
@@ -43,8 +45,8 @@ chrome.runtime.onMessageExternal.addListener((request, sender, reply) => {
 });
 
 async function status() {
-  const { attempt } = await chrome.storage.local.get("attempt");
-  return { usedToday: attempt?.day === localDay() };
+  const { attempt, deepseekKey } = await chrome.storage.local.get(["attempt", "deepseekKey"]);
+  return { usedToday: attempt?.day === localDay(), provider: deepseekKey ? "deepseek" : "local" };
 }
 
 function isClearRequest(query) {
@@ -70,12 +72,13 @@ async function ask(query) {
 
 async function run(query) {
   const day = localDay();
-  const { attempt, digest } = await chrome.storage.local.get(["attempt", "digest"]);
+  const { attempt, digest, deepseekKey } = await chrome.storage.local.get(["attempt", "digest", "deepseekKey"]);
   if (attempt?.day === day) {
     if (digest?.day !== day) {
       return { message: attempt.error || "Today’s check ended without a saved digest. You can check again tomorrow." };
     }
-    return present(select(digest.posts, query), true);
+    const result = await choosePosts(digest.posts, query, deepseekKey);
+    return present(result.posts, true, result);
   }
 
   await chrome.storage.local.set({ attempt: { day } });
@@ -83,13 +86,13 @@ async function run(query) {
 
   try {
     const candidates = await collect();
-    const selected = select(candidates, query);
-    const posts = await Promise.all(selected.map(async ({ imageUrl, ...post }) => ({
+    const result = await choosePosts(candidates, query, deepseekKey);
+    const posts = await Promise.all(result.posts.map(async ({ imageUrl, ...post }) => ({
       ...post,
       image: await readImage(imageUrl).catch(() => null),
     })));
     await chrome.storage.local.set({ digest: { day, posts } });
-    return present(posts, false);
+    return present(posts, false, result);
   } catch (error) {
     const message = error instanceof FeedError ? error.message : "Instagram didn’t load in time. You can check again tomorrow.";
     await chrome.storage.local.set({ attempt: { day, error: message } });
@@ -97,7 +100,25 @@ async function run(query) {
   }
 }
 
-function present(posts, cached) {
+async function choosePosts(posts, query, apiKey) {
+  if (apiKey && posts.length) {
+    try {
+      return await summarizeWithDeepSeek(posts, query, apiKey, limit);
+    } catch (error) {
+      return { posts: select(posts, query), fallback: error instanceof DeepSeekError ? error.message : "DeepSeek didn’t respond." };
+    }
+  }
+  return { posts: select(posts, query) };
+}
+
+function present(posts, cached, { summary, fallback }) {
+  if (summary) return { message: summary, posts };
+  const response = describeResults(posts, cached);
+  if (fallback) response.message = fallback + " Used local matching. " + response.message;
+  return response;
+}
+
+function describeResults(posts, cached) {
   if (!posts.length) {
     return { message: cached ? "Nothing in today’s saved digest matches that request." : "Nothing in the posts I checked matched that request." };
   }

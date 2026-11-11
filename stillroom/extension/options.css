@@ -1,0 +1,15 @@
+:root {
+  color: #242824;
+  background: #fbfbf8;
+  font: 16px/1.5 system-ui, sans-serif;
+}
+body { margin: 0; }
+main { max-width: 32rem; padding: 2rem 1.125rem; margin: auto; }
+h1 { margin: 0; font-size: 1.35rem; }
+label { display: block; margin-bottom: .3rem; font-weight: 650; }
+input, button { font: inherit; border-radius: 7px; }
+input { box-sizing: border-box; width: 100%; border: 1px solid #ccd4ca; padding: .5rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+button { padding: .4rem .7rem; border: 1px solid #ccd4ca; background: white; color: #28513b; cursor: pointer; }
+button[type="submit"] { background: #28513b; color: white; }
+button:disabled { opacity: .55; cursor: default; }

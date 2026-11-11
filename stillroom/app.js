@@ -58,7 +58,13 @@ function renderPost(post) {
 
 async function showStatus() {
   const response = await request("status");
-  status.textContent = response ? (response.usedToday ? "Daily check used" : "Extension connected") : "Extension disconnected";
+  if (!response) {
+    status.textContent = "Extension disconnected";
+    return;
+  }
+
+  const mode = response.provider === "deepseek" ? "DeepSeek enabled" : "Local matching";
+  status.textContent = response.usedToday ? mode + " · Daily check used" : mode;
 }
 
 document.getElementById("chat").addEventListener("submit", async (event) => {

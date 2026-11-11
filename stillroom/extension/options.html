@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stillroom options</title>
+  <link rel="stylesheet" href="options.css">
+  <script src="options.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>DeepSeek</h1>
+    <p>When enabled, Stillroom sends your prompt and the collected post captions, account handles, and image descriptions to DeepSeek for filtering and summaries. Image files stay in Chrome.</p>
+    <form id="settings">
+      <label for="api-key">DeepSeek API key</label>
+      <input id="api-key" type="password" autocomplete="off" spellcheck="false" required maxlength="160">
+      <div class="actions">
+        <button id="save" type="submit">Save and enable</button>
+        <button id="remove" type="button" disabled>Disable DeepSeek</button>
+      </div>
+    </form>
+    <p id="status" role="status"></p>
+  </main>
+</body>
+</html>
