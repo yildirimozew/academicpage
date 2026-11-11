@@ -9,6 +9,7 @@ const siteOrigins = new Set([
 const feedUrl = "https://www.instagram.com/";
 const imageTypes = new Set(["image/jpeg", "image/png", "image/webp", "image/avif"]);
 const limit = 4;
+const digestPrompt = "Summarize the important updates in the Instagram feed posts and Stories provided. Prioritize meaningful personal updates and useful information. Skip ads and engagement bait. Keep it brief. If the sample has no substantive updates, say so.";
 const maxImageBytes = 750_000;
 const stopWords = new Set(
   "a an all about at can catch check could daily digest find for from get give i instagram latest me my new of on please post posts see show the this today todays up want what whats would you".split(" ")
@@ -30,11 +31,12 @@ function trustedSender(sender) {
 }
 
 chrome.runtime.onMessageExternal.addListener((request, sender, reply) => {
-  if (!trustedSender(sender) || !["status", "ask"].includes(request?.action)) return false;
+  if (!trustedSender(sender) || !["status", "ask", "summarize"].includes(request?.action)) return false;
   if (request.action === "ask" &&
       (typeof request.query !== "string" || !request.query.trim() || request.query.length > 250)) return false;
 
-  const operation = request.action === "status" ? status() : ask(request.query);
+  const overview = request.action === "summarize";
+  const operation = request.action === "status" ? status() : ask(overview ? digestPrompt : request.query, overview);
   operation.then(reply, () => reply({ message: "Couldn’t read the saved digest. Try again." }));
   return true;
 });
@@ -48,7 +50,7 @@ function isClearRequest(query) {
   return /^(clear|delete) (?:my |the )?(?:saved posts|saved digest)$/i.test(query.trim());
 }
 
-async function ask(query) {
+async function ask(query, overview) {
   if (isClearRequest(query)) {
     if (activeCheck) return { message: "Wait for the current check to finish before clearing saved posts." };
     await chrome.storage.local.remove("digest");
@@ -57,7 +59,7 @@ async function ask(query) {
 
   if (activeCheck) return { message: "An Instagram check is already running." };
 
-  activeCheck = run(query);
+  activeCheck = run(query, overview);
   try {
     return await activeCheck;
   } finally {
@@ -65,33 +67,48 @@ async function ask(query) {
   }
 }
 
-async function run(query) {
+async function run(query, overview) {
   const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
 
   try {
-    const candidates = await collect(query);
-    const result = await choosePosts(candidates, query, deepseekKey);
+    const { candidates, note } = await collect(query, overview);
+    const result = await choosePosts(candidates, query, deepseekKey, overview);
     const posts = await Promise.all(result.posts.map(async ({ imageUrl, ...post }) => {
       const image = await readImage(imageUrl).catch(() => null);
       return { ...post, image };
     }));
     await chrome.storage.local.set({ digest: { posts } });
-    return present(posts, result);
+    const response = present(posts, result);
+    if (note) response.message += "\n\n" + note;
+    return response;
   } catch (error) {
     const message = error instanceof FeedError ? error.message : "Instagram didn’t load in time. Try again.";
     return { message };
   }
 }
 
-async function choosePosts(posts, query, apiKey) {
+async function choosePosts(posts, query, apiKey, overview) {
+  let fallback;
   if (apiKey && posts.length) {
     try {
       return await summarizeWithDeepSeek(posts, query, apiKey, limit);
     } catch (error) {
-      return { posts: select(posts, query), fallback: error instanceof DeepSeekError ? error.message : "DeepSeek didn’t respond." };
+      fallback = error instanceof DeepSeekError ? error.message : "DeepSeek didn’t respond.";
     }
   }
-  return { posts: select(posts, query) };
+
+  if (overview) {
+    const feed = posts.filter((post) => post.kind !== "story");
+    const stories = posts.filter((post) => post.kind === "story");
+    const firstStories = stories.slice(0, limit / 2);
+    const firstFeed = feed.slice(0, limit - firstStories.length);
+    return {
+      posts: [...firstFeed, ...stories.slice(0, limit - firstFeed.length)],
+      summary: (fallback || "Enable DeepSeek in Stillroom’s extension options for summaries.") + " Here’s a sample from this check.",
+    };
+  }
+
+  return { posts: select(posts, query), fallback };
 }
 
 function present(posts, { summary, fallback }) {
@@ -132,34 +149,53 @@ function select(posts, prompt) {
 
 class FeedError extends Error {}
 
-async function collect(query) {
+async function collect(query, overview) {
   const tab = await chrome.tabs.create({ url: feedUrl, active: false });
   try {
     await waitForLoad(tab.id);
-    const stories = storyRequest(query);
-    if (stories) {
-      const posts = await collectStories(tab.id, stories);
-      if (!posts.length) {
-        const hint = stories.length ? "Check that the account has an active story you can see." : "Try asking for stories from a specific @account.";
-        throw new FeedError("I couldn’t read any active Instagram stories. " + hint);
-      }
-      return posts;
-    }
+    if (overview) return await collectOverview(tab.id);
 
-    const [result] = await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      func: scanFeed,
-    });
-    if (result?.result?.needsLogin) {
-      throw new FeedError("Instagram needs a sign-in in this Chrome profile. Sign in, then try again.");
+    const stories = storyRequest(query);
+    if (!stories) return { candidates: await readFeed(tab.id) };
+
+    const candidates = await collectStories(tab.id, stories);
+    if (!candidates.length) {
+      const hint = stories.length ? "Check that the account has an active story you can see." : "Try asking for stories from a specific @account.";
+      throw new FeedError("I couldn’t read any active Instagram stories. " + hint);
     }
-    if (!result?.result?.posts?.length) {
-      throw new FeedError("I couldn’t find readable posts in the Instagram feed. Try again.");
-    }
-    return result.result.posts;
+    return { candidates };
   } finally {
     await chrome.tabs.remove(tab.id).catch(() => {});
   }
+}
+
+async function collectOverview(tabId) {
+  let feedError;
+  const feed = await readFeed(tabId).catch((error) => {
+    feedError = error;
+    return [];
+  });
+  const stories = await collectStories(tabId, []).catch(() => []);
+
+  if (!feed.length && !stories.length) throw feedError;
+  const note = feed.length
+    ? (stories.length ? "" : "I couldn’t read any Stories in this check.")
+    : "I couldn’t read any feed posts in this check.";
+  return { candidates: [...feed, ...stories], note };
+}
+
+async function readFeed(tabId) {
+  const [injection] = await chrome.scripting.executeScript({
+    target: { tabId },
+    func: scanFeed,
+  });
+  if (injection?.result?.needsLogin) {
+    throw new FeedError("Instagram needs a sign-in in this Chrome profile. Sign in, then try again.");
+  }
+  if (!injection?.result?.posts?.length) {
+    throw new FeedError("I couldn’t find readable posts in the Instagram feed. Try again.");
+  }
+  return injection.result.posts;
 }
 
 async function waitForLoad(tabId) {

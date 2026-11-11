@@ -109,6 +109,7 @@ function inspectStoryPage(action) {
   };
 
   if (action === "open" && location.pathname === "/") {
+    if (scrollY > 0) window.scrollTo({ top: 0, behavior: "instant" });
     const links = document.querySelectorAll('main a[href^="/stories/"], a[href^="/stories/"]');
     const link = [...links].find((node) =>
       /^\/stories\/(?!highlights\/)[\w.]+(?:\/\d+)?\/?$/.test(node.pathname) &&

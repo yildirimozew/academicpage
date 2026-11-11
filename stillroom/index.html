@@ -6,8 +6,8 @@
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src data:; connect-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
   <title>Stillroom</title>
-  <link rel="stylesheet" href="./style.css">
-  <script src="./app.js?v=0.3.0" type="module"></script>
+  <link rel="stylesheet" href="./style.css?v=0.3.1">
+  <script src="./app.js?v=0.3.1" type="module"></script>
 </head>
 <body>
   <main>
@@ -15,17 +15,19 @@
       <h1>Stillroom</h1>
       <div class="tools">
         <p id="connection" role="status">Checking extension…</p>
-        <a class="download" href="./stillroom-extension.zip?v=0.3.0" download>Download extension</a>
+        <a class="download" href="./stillroom-extension.zip?v=0.3.1" download>Download extension</a>
       </div>
     </header>
     <div class="thread" id="thread" role="log" aria-label="Conversation">
-      <div class="message assistant"><p>What would you like to see from Instagram?</p></div>
     </div>
-    <form id="chat">
-      <label class="sr-only" for="prompt">Message</label>
-      <input id="prompt" maxlength="250" placeholder="Ask for a topic or @account…" autocomplete="off" required>
-      <button id="send" aria-label="Send message" title="Send message" type="submit">↑</button>
-    </form>
+    <div class="composer">
+      <button id="summarize" type="button">Summarize Instagram</button>
+      <form id="chat">
+        <label class="sr-only" for="prompt">Message</label>
+        <input id="prompt" maxlength="250" placeholder="Or ask about a topic or @account…" autocomplete="off" required>
+        <button id="send" aria-label="Send message" title="Send message" type="submit">↑</button>
+      </form>
+    </div>
   </main>
 </body>
 </html>

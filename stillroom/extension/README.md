@@ -3,7 +3,7 @@
 1. Extract the ZIP to a folder you can keep.
 2. Open `chrome://extensions` in desktop Chrome and enable **Developer mode**.
 3. Click **Load unpacked** and select the extracted `extension` folder. If you already installed an earlier version, replace its files and click **Reload** on its Chrome extensions card.
-4. Open [Stillroom](https://yildirimozen.com/stillroom/) in the same Chrome profile you use for Instagram. Try “Show me hiking posts” or “Show me posts from @username.”
+4. Open [Stillroom](https://yildirimozen.com/stillroom/) in the same Chrome profile you use for Instagram. Click **Summarize Instagram** to check feed posts and Stories together. Enable DeepSeek for a written summary.
 
 Each request opens an inactive Instagram tab, checks a small batch of posts, and closes the tab. The latest successful check saves up to four matching posts in this browser. Enter “Clear saved posts” to delete them.
 

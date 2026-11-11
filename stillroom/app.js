@@ -4,6 +4,7 @@ const thread = document.getElementById("thread");
 const status = document.getElementById("connection");
 const input = document.getElementById("prompt");
 const send = document.getElementById("send");
+const summarize = document.getElementById("summarize");
 
 function request(action, query) {
   const runtime = globalThis.chrome?.runtime;
@@ -71,28 +72,39 @@ async function showStatus() {
   status.textContent = response.provider === "deepseek" ? "DeepSeek enabled" : "Local matching";
 }
 
-document.getElementById("chat").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const query = input.value.trim();
-  if (!query || send.disabled) return;
-
-  input.value = "";
+async function runRequest(action, query) {
+  if (send.disabled) return;
   send.disabled = true;
-  message("user", query);
-  const reply = message("assistant", "Checking…");
+  summarize.disabled = true;
+
+  const oneClick = action === "summarize";
+  if (!oneClick) message("user", query);
+  const reply = message("assistant", oneClick ? "Checking feed posts and Stories…" : "Checking…");
   try {
-    const response = await request("ask", query);
+    const response = await request(action, query);
     if (!response) {
-      reply.firstChild.textContent = "Install or enable the Stillroom extension in Chrome, then try again.";
+      reply.firstChild.textContent = oneClick
+        ? "Install or update the Stillroom extension in Chrome, then try again."
+        : "Install or enable the Stillroom extension in Chrome, then try again.";
       return;
     }
     reply.firstChild.textContent = response.message;
     reply.append(...(response.posts || []).map(renderPost));
   } finally {
     send.disabled = false;
+    summarize.disabled = false;
     thread.scrollTop = thread.scrollHeight;
     void showStatus();
   }
+}
+
+summarize.addEventListener("click", () => void runRequest("summarize"));
+document.getElementById("chat").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = input.value.trim();
+  if (!query || send.disabled) return;
+  input.value = "";
+  void runRequest("ask", query);
 });
 
 void showStatus();
