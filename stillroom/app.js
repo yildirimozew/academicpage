@@ -83,7 +83,7 @@ function renderPost(post) {
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     copy.append(link);
-  } else if (kind === "Story" && !images.length) {
+  } else if (kind === "Story" && !images.length && !playable) {
     const fallback = document.createElement("p");
     fallback.textContent = "Story preview unavailable.";
     copy.append(fallback);
@@ -115,11 +115,11 @@ async function runRequest(action, query) {
     if (!response) {
       const connection = await request("status");
       if (!connection) {
-        reply.firstChild.textContent = "Open Stillroom in the same desktop Chrome profile where the extension is installed and enabled.";
+        reply.firstChild.textContent = "Open this page in the same desktop Chrome profile where the extension is installed and enabled.";
       } else if (oneClick) {
-        reply.firstChild.textContent = "Chrome can reach Stillroom, but the extension didn’t answer the summary request. Download the latest extension, replace the installed folder’s files, then click Reload in chrome://extensions.";
+        reply.firstChild.textContent = "Chrome can reach the extension, but the extension didn’t answer the summary request. Download the latest extension, replace the installed folder’s files, then click Reload in chrome://extensions.";
       } else {
-        reply.firstChild.textContent = "Chrome can reach Stillroom, but this request didn’t finish. Try again.";
+        reply.firstChild.textContent = "Chrome can reach the extension, but this request didn’t finish. Try again.";
       }
       return;
     }

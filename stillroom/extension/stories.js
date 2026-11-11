@@ -53,7 +53,7 @@ async function collectStories(tabId, targets) {
 }
 
 async function findStoryTray(tabId) {
-  const deadline = Date.now() + 4500;
+  const deadline = Date.now() + 7000;
   do {
     const result = await inspectStories(tabId, "open");
     if (result?.needsLogin) throw new FeedError("Instagram needs a sign-in in this Chrome profile. Sign in, then try again.");
@@ -64,7 +64,7 @@ async function findStoryTray(tabId) {
 }
 
 async function waitForStory(tabId, account, previous) {
-  const deadline = Date.now() + 5000;
+  const deadline = Date.now() + 7000;
   let opened = false;
   do {
     const result = await inspectStories(tabId, opened ? "read" : "enter");
@@ -98,8 +98,10 @@ function inspectStoryPage(action) {
 
   const route = location.pathname.match(/^\/stories\/([\w.]+)(?:\/(\d+))?\/?$/);
   const controls = "button, [role=button]";
-  const label = (node) => [node.getAttribute("aria-label"), node.getAttribute("title"), node.querySelector("svg[aria-label]")?.getAttribute("aria-label")]
-    .filter(Boolean).join(" ").trim();
+  const label = (node) => (node.getAttribute("aria-label") || node.getAttribute("title") ||
+    node.querySelector("svg[aria-label]")?.getAttribute("aria-label") || node.innerText || "").trim();
+  const normalize = (text) => text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/ı/g, "i");
+  const ownStory = (text) => /\b(your story|hikayen|hikayeniz|hikaye ekle|add story|create story)\b/.test(normalize(text));
   const visible = (node) => {
     const box = node.getBoundingClientRect();
     const style = getComputedStyle(node);
@@ -113,17 +115,28 @@ function inspectStoryPage(action) {
     const links = document.querySelectorAll('main a[href^="/stories/"], a[href^="/stories/"]');
     const link = [...links].find((node) =>
       /^\/stories\/(?!highlights\/)[\w.]+(?:\/\d+)?\/?$/.test(node.pathname) &&
-      !/\byour story\b/i.test(node.innerText + " " + label(node)) && visible(node));
+      !ownStory(label(node)) && visible(node));
     if (link) return { path: link.pathname };
 
     const tray = [...document.querySelectorAll('[role=list], [role=menu], [aria-label]')].find((node) =>
-      /^stories$/i.test(node.getAttribute("aria-label") || "") && visible(node));
-    const candidates = (tray || document.querySelector("main"))?.querySelectorAll(controls) || [];
-    const button = [...candidates].find((node) => {
-      const name = label(node) || node.innerText.trim();
-      return visible(node) && !/\b(your story|add|create|like|share|reply|previous|next|highlights)\b/i.test(name) &&
-        (/\b(?:view|watch) (?:.+ )?stor(?:y|ies)\b|\bstory by\b|\b[\w.]+'s story\b/i.test(name) ||
-          Boolean(tray && /^[\w.]{1,30}$/.test(name) && node.querySelector("img")));
+      /^(stories|hikayeler)$/.test(normalize(node.getAttribute("aria-label") || "")) && visible(node));
+    const feed = document.querySelector('main, [role="main"]') || document;
+    const candidates = [...(tray || feed).querySelectorAll(controls)].filter(visible);
+    const storyRings = candidates.filter((node) => {
+      const bounds = node.getBoundingClientRect();
+      return bounds.top >= 0 && bounds.top < 245 && bounds.width <= 145 &&
+        bounds.height <= 150 && node.querySelector("img") && node.querySelector("canvas");
+    });
+    const button = candidates.find((node) => {
+      const name = normalize(label(node));
+      const englishStory = /\b(?:view|watch) (?:.+ )?stor(?:y|ies)\b|\bstory by\b|\b[\w.]+['’]s story\b/.test(name);
+      const turkishStory = /['’](?:dan|den|tan|ten) hikaye\b/.test(name);
+      return !ownStory(name) && (englishStory || turkishStory ||
+        Boolean(tray && /^[\w.]{1,30}$/.test(name) && node.querySelector("img")));
+    }) || storyRings.find((node) => {
+      if (ownStory(label(node))) return false;
+      const top = node.getBoundingClientRect().top;
+      return storyRings.filter((peer) => Math.abs(peer.getBoundingClientRect().top - top) < 12).length >= 3;
     });
     if (button) {
       button.click();
@@ -147,7 +160,7 @@ function inspectStoryPage(action) {
   })[0];
   if (!media && action === "enter") {
     const open = [...viewer.querySelectorAll(controls)].find((node) =>
-      visible(node) && /^(?:view|watch) story$/i.test(label(node) || node.innerText.trim()));
+      visible(node) && /^(?:(?:view|watch) story|hikayeyi (?:gor|goruntule|izle))$/.test(normalize(label(node))));
     if (open) {
       open.click();
       return { clicked: true };
@@ -156,11 +169,8 @@ function inspectStoryPage(action) {
   if (!media) return null;
 
   if (action === "next") {
-    const button = [...viewer.querySelectorAll(controls)].find((node) => {
-      const name = node.getAttribute("aria-label") || node.getAttribute("title") ||
-        node.querySelector("svg[aria-label]")?.getAttribute("aria-label") || "";
-      return visible(node) && /^(?:next|next story)$/i.test(name.trim());
-    });
+    const button = [...viewer.querySelectorAll(controls)].find((node) =>
+      visible(node) && /^(next|next story|ileri|sonraki|sonraki hikaye)$/.test(normalize(label(node))));
     if (button) {
       button.click();
       return { clicked: true };
@@ -171,6 +181,8 @@ function inspectStoryPage(action) {
 
   const video = media.tagName === "VIDEO";
   const imageUrl = video ? media.poster : (media.currentSrc || media.src);
+  const videoUrl = video ? [media.currentSrc, media.src, media.querySelector("source[src]")?.src]
+    .find((source) => source?.startsWith("https://")) : "";
   if (!video && (!media.complete || !media.naturalWidth || !imageUrl)) return null;
   const caption = [...viewer.querySelectorAll('[data-testid="story-text"], [aria-label="Story text"]')]
     .filter(visible).map((node) => node.innerText.trim()).filter(Boolean).join(" ").slice(0, 360);
@@ -184,6 +196,7 @@ function inspectStoryPage(action) {
       caption,
       alt: (video ? "" : media.alt || "").slice(0, 240),
       imageUrl: imageUrl || "",
+      videoUrl: videoUrl || "",
       video,
     },
   };

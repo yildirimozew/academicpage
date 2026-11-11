@@ -30,7 +30,7 @@ remove.addEventListener("click", async () => {
   remove.disabled = true;
   try {
     await chrome.storage.local.remove("deepseekKey");
-    await refresh("DeepSeek disabled. Stillroom will use local matching.");
+    await refresh("DeepSeek disabled. The extension will use local matching.");
   } catch {
     await refresh("Couldn’t remove the key.");
   }

@@ -106,7 +106,7 @@ async function choosePosts(posts, query, apiKey, overview) {
     const firstFeed = feed.slice(0, limit - firstStories.length);
     return {
       posts: [...firstFeed, ...stories.slice(0, limit - firstFeed.length)],
-      summary: (fallback || "Enable DeepSeek in Stillroom’s extension options for summaries.") + " Here’s a sample from this check.",
+      summary: (fallback || "Enable DeepSeek in the extension options for summaries.") + " Here’s a sample from this check.",
     };
   }
 
