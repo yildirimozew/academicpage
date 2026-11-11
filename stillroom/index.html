@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src data:; connect-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>Stillroom</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Stillroom</h1>
+      <div class="tools">
+        <p id="connection" role="status">Checking extension…</p>
+        <a class="download" href="./stillroom-extension.zip" download>Download extension</a>
+      </div>
+    </header>
+    <div class="thread" id="thread" role="log" aria-label="Conversation">
+      <div class="message assistant"><p>What would you like to see from Instagram?</p></div>
+    </div>
+    <form id="chat">
+      <label class="sr-only" for="prompt">Message</label>
+      <input id="prompt" maxlength="250" placeholder="Ask for a topic or @account…" autocomplete="off" required>
+      <button id="send" aria-label="Send message" title="Send message" type="submit">↑</button>
+    </form>
+  </main>
+</body>
+</html>

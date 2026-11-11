@@ -1,0 +1,82 @@
+:root {
+  color-scheme: light;
+  color: #242824;
+  background: #fbfbf8;
+  font: 16px/1.55 "Inter", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+main {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(680px, 100% - 36px);
+  height: 100dvh;
+  margin: auto;
+}
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 0 12px;
+  border-bottom: 1px solid #e5e7e0;
+}
+h1 { margin: 0; font-size: 1.15rem; font-weight: 680; letter-spacing: -.035em; }
+.tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 6px 12px; }
+.download {
+  padding: 5px 9px;
+  border: 1px solid #ccd4ca;
+  border-radius: 7px;
+  color: #28513b;
+  font-size: .78rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+.download:hover { background: #eef0ea; }
+.download:focus-visible { outline: 2px solid #3a654d; outline-offset: 3px; }
+#connection { margin: 0; color: #596359; text-align: right; font-size: .78rem; }
+.thread { overflow: auto; padding: 22px 2px; overscroll-behavior: contain; }
+.message { width: fit-content; max-width: 90%; margin: 0 0 16px; overflow-wrap: anywhere; }
+.message > p { margin: 0; padding: 9px 13px; border-radius: 14px; background: #eef0ea; white-space: pre-wrap; }
+.user { margin-left: auto; }
+.user > p { background: #28513b; color: white; }
+.post {
+  margin-top: 9px;
+  border: 1px solid #e0e5db;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.post img { display: block; width: 100%; max-height: 330px; object-fit: contain; background: #eef0ea; }
+.post > div { padding: 10px 12px; }
+.post h2, .post p { margin: 0; font-size: .9rem; }
+.post h2 { font-weight: 680; color: #28513b; }
+.post p { margin-top: 2px; }
+form {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 9px 0 max(18px, env(safe-area-inset-bottom));
+  padding: 5px;
+  background: white;
+  border: 1px solid #ccd4ca;
+  border-radius: 13px;
+}
+form:focus-within { border-color: #3a654d; }
+input, button { font: inherit; }
+input { flex: 1; min-width: 0; border: 0; padding: 8px; color: inherit; background: transparent; }
+input:focus { outline: none; }
+button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 8px;
+  background: #28513b;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+button:disabled { opacity: .55; cursor: default; }
+button:focus-visible { outline: 2px solid #3a654d; outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

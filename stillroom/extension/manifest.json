@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Stillroom",
+  "version": "0.1.1",
+  "description": "Collects one small Instagram digest per day for the Stillroom chat.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwfEslH5ZM+JRPBL1AAMnqd8mrzbYLkSELwAnoMH3ysM4Jxza74O+xGe10Dw35JcWX0iatszV+xyX3P5w7hlTRjHGNZONqL5aBRGGVbK6fGPB1k9pBSf87mlDkDaQ0aA6Kil4FDptF0PNJpxYUA895/OJSE1awOsPTlOnQ/6x5mljLRlawkPAf/jKbRXHoV/Ygv2x7ZY9NXcmZVkIaaXwybNPzFw/CoFfcN2jEgycuapjm4OOQK6FD/6tpFyL8uoSL2hO8cge0YYzf3PDZ0Fzm7cAMaV0XyCA5bIniMKseOIrmN5Tb/C+9uieNifvm8WPQeC+2MiaBUvVO51Z3L0OiwIDAQAB",
+  "permissions": [
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.instagram.com/*",
+    "https://*.cdninstagram.com/*",
+    "https://*.fbcdn.net/*"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "https://stillroom-instagram-digest.mildtitan4.chatgpt.site/*",
+      "https://stillroom.yildirimozen.com/*",
+      "https://yildirimozen.com/stillroom/*"
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
