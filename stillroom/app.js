@@ -83,9 +83,14 @@ async function runRequest(action, query) {
   try {
     const response = await request(action, query);
     if (!response) {
-      reply.firstChild.textContent = oneClick
-        ? "Install or update the Stillroom extension in Chrome, then try again."
-        : "Install or enable the Stillroom extension in Chrome, then try again.";
+      const connection = await request("status");
+      if (!connection) {
+        reply.firstChild.textContent = "Open Stillroom in the same desktop Chrome profile where the extension is installed and enabled.";
+      } else if (oneClick) {
+        reply.firstChild.textContent = "Chrome can reach Stillroom, but the extension didn’t answer the summary request. Download version 0.3.1, replace the installed folder’s files, then click Reload in chrome://extensions.";
+      } else {
+        reply.firstChild.textContent = "Chrome can reach Stillroom, but this request didn’t finish. Try again.";
+      }
       return;
     }
     reply.firstChild.textContent = response.message;
