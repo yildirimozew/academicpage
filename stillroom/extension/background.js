@@ -1,6 +1,6 @@
 "use strict";
 
-importScripts("deepseek.js");
+importScripts("deepseek.js", "stories.js");
 
 const siteOrigins = new Set([
   "https://stillroom-instagram-digest.mildtitan4.chatgpt.site",
@@ -69,12 +69,12 @@ async function run(query) {
   const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
 
   try {
-    const candidates = await collect();
+    const candidates = await collect(query);
     const result = await choosePosts(candidates, query, deepseekKey);
-    const posts = await Promise.all(result.posts.map(async ({ imageUrl, ...post }) => ({
-      ...post,
-      image: await readImage(imageUrl).catch(() => null),
-    })));
+    const posts = await Promise.all(result.posts.map(async ({ imageUrl, ...post }) => {
+      const image = await readImage(imageUrl).catch(() => null);
+      return { ...post, image };
+    }));
     await chrome.storage.local.set({ digest: { posts } });
     return present(posts, result);
   } catch (error) {
@@ -106,12 +106,18 @@ function describeResults(posts) {
     return { message: "Nothing in the posts I checked matched that request." };
   }
 
-  const count = posts.length === 1 ? "1 post" : posts.length + " posts";
+  const noun = posts[0].kind === "story" ? (posts.length === 1 ? "story" : "stories") : (posts.length === 1 ? "post" : "posts");
+  const count = posts.length + " " + noun;
   return { message: "Found " + count + ".", posts };
 }
 
 function select(posts, prompt) {
   const query = prompt.toLowerCase().replace(/[’']/g, "");
+  const stories = storyRequest(prompt);
+  if (stories?.length) {
+    return posts.filter((post) => stories.some(([account]) => post.handle === "@" + account)).slice(0, limit);
+  }
+  if (stories) return posts.slice(0, limit);
   const accounts = query.match(/@[a-z0-9_.]+/g)?.map((account) => account.replace(/\.+$/, "")) ?? [];
   const terms = query.replace(/@[a-z0-9_.]+/g, "").match(/[\p{L}\p{N}]+/gu)
     ?.filter((term) => !stopWords.has(term)) ?? [];
@@ -126,10 +132,20 @@ function select(posts, prompt) {
 
 class FeedError extends Error {}
 
-async function collect() {
+async function collect(query) {
   const tab = await chrome.tabs.create({ url: feedUrl, active: false });
   try {
     await waitForLoad(tab.id);
+    const stories = storyRequest(query);
+    if (stories) {
+      const posts = await collectStories(tab.id, stories);
+      if (!posts.length) {
+        const hint = stories.length ? "Check that the account has an active story you can see." : "Try asking for stories from a specific @account.";
+        throw new FeedError("I couldn’t read any active Instagram stories. " + hint);
+      }
+      return posts;
+    }
+
     const [result] = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: scanFeed,

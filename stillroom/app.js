@@ -45,11 +45,16 @@ function renderPost(post) {
   }
   const copy = document.createElement("div");
   const author = document.createElement("h2");
-  author.textContent = post.handle || "Instagram post";
+  const story = post.kind === "story";
+  author.textContent = [post.handle, story ? "Story" : ""].filter(Boolean).join(" · ") || "Instagram post";
   copy.append(author);
-  if (post.caption) {
+  const storyPreview = post.video
+    ? (post.image ? "Video story preview" : "Video story · Preview unavailable")
+    : "Story image unavailable";
+  const text = post.caption || (story && (post.video || !post.image) ? storyPreview : "");
+  if (text) {
     const caption = document.createElement("p");
-    caption.textContent = post.caption;
+    caption.textContent = text;
     copy.append(caption);
   }
   card.append(copy);
