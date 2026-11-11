@@ -20,11 +20,6 @@ const topicWords = new Map([
 
 let activeCheck;
 
-function localDay() {
-  const date = new Date();
-  return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join("-");
-}
-
 function trustedSender(sender) {
   if (sender.frameId !== 0 || !sender.url) return false;
   const url = new URL(sender.url);
@@ -45,8 +40,8 @@ chrome.runtime.onMessageExternal.addListener((request, sender, reply) => {
 });
 
 async function status() {
-  const { attempt, deepseekKey } = await chrome.storage.local.get(["attempt", "deepseekKey"]);
-  return { usedToday: attempt?.day === localDay(), provider: deepseekKey ? "deepseek" : "local" };
+  const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
+  return { provider: deepseekKey ? "deepseek" : "local" };
 }
 
 function isClearRequest(query) {
@@ -57,10 +52,10 @@ async function ask(query) {
   if (isClearRequest(query)) {
     if (activeCheck) return { message: "Wait for the current check to finish before clearing saved posts." };
     await chrome.storage.local.remove("digest");
-    return { message: "Saved posts cleared. Today’s check limit still applies." };
+    return { message: "Saved posts cleared." };
   }
 
-  if (activeCheck) return { message: "A daily check is already running." };
+  if (activeCheck) return { message: "An Instagram check is already running." };
 
   activeCheck = run(query);
   try {
@@ -71,18 +66,7 @@ async function ask(query) {
 }
 
 async function run(query) {
-  const day = localDay();
-  const { attempt, digest, deepseekKey } = await chrome.storage.local.get(["attempt", "digest", "deepseekKey"]);
-  if (attempt?.day === day) {
-    if (digest?.day !== day) {
-      return { message: attempt.error || "Today’s check ended without a saved digest. You can check again tomorrow." };
-    }
-    const result = await choosePosts(digest.posts, query, deepseekKey);
-    return present(result.posts, true, result);
-  }
-
-  await chrome.storage.local.set({ attempt: { day } });
-  await chrome.storage.local.remove("digest");
+  const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
 
   try {
     const candidates = await collect();
@@ -91,11 +75,10 @@ async function run(query) {
       ...post,
       image: await readImage(imageUrl).catch(() => null),
     })));
-    await chrome.storage.local.set({ digest: { day, posts } });
-    return present(posts, false, result);
+    await chrome.storage.local.set({ digest: { posts } });
+    return present(posts, result);
   } catch (error) {
-    const message = error instanceof FeedError ? error.message : "Instagram didn’t load in time. You can check again tomorrow.";
-    await chrome.storage.local.set({ attempt: { day, error: message } });
+    const message = error instanceof FeedError ? error.message : "Instagram didn’t load in time. Try again.";
     return { message };
   }
 }
@@ -111,20 +94,20 @@ async function choosePosts(posts, query, apiKey) {
   return { posts: select(posts, query) };
 }
 
-function present(posts, cached, { summary, fallback }) {
+function present(posts, { summary, fallback }) {
   if (summary) return { message: summary, posts };
-  const response = describeResults(posts, cached);
+  const response = describeResults(posts);
   if (fallback) response.message = fallback + " Used local matching. " + response.message;
   return response;
 }
 
-function describeResults(posts, cached) {
+function describeResults(posts) {
   if (!posts.length) {
-    return { message: cached ? "Nothing in today’s saved digest matches that request." : "Nothing in the posts I checked matched that request." };
+    return { message: "Nothing in the posts I checked matched that request." };
   }
 
   const count = posts.length === 1 ? "1 post" : posts.length + " posts";
-  return { message: cached ? count + " from today’s saved digest." : "Found " + count + " in today’s check.", posts };
+  return { message: "Found " + count + ".", posts };
 }
 
 function select(posts, prompt) {
@@ -152,10 +135,10 @@ async function collect() {
       func: scanFeed,
     });
     if (result?.result?.needsLogin) {
-      throw new FeedError("Instagram needs a sign-in in this Chrome profile. Sign in before tomorrow’s check.");
+      throw new FeedError("Instagram needs a sign-in in this Chrome profile. Sign in, then try again.");
     }
     if (!result?.result?.posts?.length) {
-      throw new FeedError("I couldn’t find readable posts in the Instagram feed. You can check again tomorrow.");
+      throw new FeedError("I couldn’t find readable posts in the Instagram feed. Try again.");
     }
     return result.result.posts;
   } finally {
@@ -168,12 +151,12 @@ async function waitForLoad(tabId) {
   while (Date.now() < deadline) {
     const tab = await chrome.tabs.get(tabId);
     if (tab.status === "complete") {
-      if (!tab.url?.startsWith(feedUrl)) throw new FeedError("Instagram opened a sign-in or verification page. Check your session before tomorrow.");
+      if (!tab.url?.startsWith(feedUrl)) throw new FeedError("Instagram opened a sign-in or verification page. Check your session, then try again.");
       return;
     }
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
-  throw new FeedError("Instagram didn’t load in time. You can check again tomorrow.");
+  throw new FeedError("Instagram didn’t load in time. Try again.");
 }
 
 // Runs inside the one inactive Instagram tab created by the extension.

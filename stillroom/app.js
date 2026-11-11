@@ -63,8 +63,7 @@ async function showStatus() {
     return;
   }
 
-  const mode = response.provider === "deepseek" ? "DeepSeek enabled" : "Local matching";
-  status.textContent = response.usedToday ? mode + " · Daily check used" : mode;
+  status.textContent = response.provider === "deepseek" ? "DeepSeek enabled" : "Local matching";
 }
 
 document.getElementById("chat").addEventListener("submit", async (event) => {
