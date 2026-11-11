@@ -32,31 +32,61 @@ function message(role, text) {
   return bubble;
 }
 
+function isInstagramMedia(source) {
+  try {
+    const url = new URL(source);
+    return url.protocol === "https:" && !url.username && !url.password &&
+      /(^|\.)(cdninstagram\.com|fbcdn\.net)$/.test(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
 function renderPost(post) {
   const card = document.createElement("article");
   card.className = "post";
-  if (post.image && /^data:image\/(?:jpeg|png|webp|avif);base64,[a-z0-9+/=]+$/i.test(post.image)) {
+  const images = (post.images || [post.image]).filter((source) =>
+    /^data:image\/(?:jpeg|png|webp|avif);base64,[a-z0-9+/=]+$/i.test(source || "") || isInstagramMedia(source));
+  for (const [index, source] of images.entries()) {
     const image = document.createElement("img");
-    image.src = post.image;
-    image.alt = post.alt || (post.handle ? "Photo from " + post.handle : "Instagram photo");
-    image.addEventListener("load", () => {
-      if (thread.lastElementChild === card.parentElement) thread.scrollTop = thread.scrollHeight;
-    });
+    image.src = source;
+    image.alt = index === 0 && post.alt ? post.alt : "Instagram image " + (index + 1);
+    image.loading = "lazy";
+    image.referrerPolicy = "no-referrer";
     card.append(image);
   }
+
+  const playable = isInstagramMedia(post.videoSrc);
+  if (playable) {
+    const video = document.createElement("video");
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "none";
+    video.src = post.videoSrc;
+    card.append(video);
+  }
+
   const copy = document.createElement("div");
   const author = document.createElement("h2");
-  const story = post.kind === "story";
-  author.textContent = [post.handle, story ? "Story" : ""].filter(Boolean).join(" · ") || "Instagram post";
+  const kind = post.kind === "story" ? "Story" : post.kind === "reel" ? "Reel" : "";
+  author.textContent = [post.handle, kind].filter(Boolean).join(" · ") || "Instagram post";
   copy.append(author);
-  const storyPreview = post.video
-    ? (post.image ? "Video story preview" : "Video story · Preview unavailable")
-    : "Story image unavailable";
-  const text = post.caption || (story && (post.video || !post.image) ? storyPreview : "");
-  if (text) {
+  if (post.caption) {
     const caption = document.createElement("p");
-    caption.textContent = text;
+    caption.textContent = post.caption;
     copy.append(caption);
+  }
+  if (/^https:\/\/www\.instagram\.com\/(?:[\w.]+\/)?(?:p|reels?)\/[\w-]+\/?$/.test(post.permalink || "")) {
+    const link = document.createElement("a");
+    link.href = post.permalink;
+    link.textContent = kind === "Reel" ? "Open Reel on Instagram" : "Open post on Instagram";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    copy.append(link);
+  } else if (kind === "Story" && !images.length) {
+    const fallback = document.createElement("p");
+    fallback.textContent = "Story preview unavailable.";
+    copy.append(fallback);
   }
   card.append(copy);
   return card;
@@ -87,7 +117,7 @@ async function runRequest(action, query) {
       if (!connection) {
         reply.firstChild.textContent = "Open Stillroom in the same desktop Chrome profile where the extension is installed and enabled.";
       } else if (oneClick) {
-        reply.firstChild.textContent = "Chrome can reach Stillroom, but the extension didn’t answer the summary request. Download version 0.3.1, replace the installed folder’s files, then click Reload in chrome://extensions.";
+        reply.firstChild.textContent = "Chrome can reach Stillroom, but the extension didn’t answer the summary request. Download the latest extension, replace the installed folder’s files, then click Reload in chrome://extensions.";
       } else {
         reply.firstChild.textContent = "Chrome can reach Stillroom, but this request didn’t finish. Try again.";
       }

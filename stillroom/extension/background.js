@@ -1,6 +1,6 @@
 "use strict";
 
-importScripts("deepseek.js", "stories.js");
+importScripts("deepseek.js", "stories.js", "media.js");
 
 const siteOrigins = new Set([
   "https://stillroom-instagram-digest.mildtitan4.chatgpt.site",
@@ -70,13 +70,13 @@ async function ask(query, overview) {
 async function run(query, overview) {
   const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
 
+  let tab;
   try {
-    const { candidates, note } = await collect(query, overview);
+    tab = await chrome.tabs.create({ url: feedUrl, active: false });
+    const { candidates, note } = await collect(tab.id, query, overview, deepseekKey);
     const result = await choosePosts(candidates, query, deepseekKey, overview);
-    const posts = await Promise.all(result.posts.map(async ({ imageUrl, ...post }) => {
-      const image = await readImage(imageUrl).catch(() => null);
-      return { ...post, image };
-    }));
+    const posts = [];
+    for (const post of result.posts) posts.push(await resolvePostMedia(tab.id, post));
     await chrome.storage.local.set({ digest: { posts } });
     const response = present(posts, result);
     if (note) response.message += "\n\n" + note;
@@ -84,6 +84,8 @@ async function run(query, overview) {
   } catch (error) {
     const message = error instanceof FeedError ? error.message : "Instagram didn’t load in time. Try again.";
     return { message };
+  } finally {
+    if (tab?.id !== undefined) await chrome.tabs.remove(tab.id).catch(() => {});
   }
 }
 
@@ -149,29 +151,24 @@ function select(posts, prompt) {
 
 class FeedError extends Error {}
 
-async function collect(query, overview) {
-  const tab = await chrome.tabs.create({ url: feedUrl, active: false });
-  try {
-    await waitForLoad(tab.id);
-    if (overview) return await collectOverview(tab.id);
+async function collect(tabId, query, overview, apiKey) {
+  await waitForLoad(tabId);
+  if (overview) return collectOverview(tabId, query, apiKey);
 
-    const stories = storyRequest(query);
-    if (!stories) return { candidates: await readFeed(tab.id) };
+  const stories = storyRequest(query);
+  if (!stories) return { candidates: await readFeed(tabId, query, apiKey) };
 
-    const candidates = await collectStories(tab.id, stories);
-    if (!candidates.length) {
-      const hint = stories.length ? "Check that the account has an active story you can see." : "Try asking for stories from a specific @account.";
-      throw new FeedError("I couldn’t read any active Instagram stories. " + hint);
-    }
-    return { candidates };
-  } finally {
-    await chrome.tabs.remove(tab.id).catch(() => {});
+  const candidates = await collectStories(tabId, stories);
+  if (!candidates.length) {
+    const hint = stories.length ? "Check that the account has an active story you can see." : "Try asking for stories from a specific @account.";
+    throw new FeedError("I couldn’t read any active Instagram stories. " + hint);
   }
+  return { candidates };
 }
 
-async function collectOverview(tabId) {
+async function collectOverview(tabId, query, apiKey) {
   let feedError;
-  const feed = await readFeed(tabId).catch((error) => {
+  const feed = await readFeed(tabId, query, apiKey).catch((error) => {
     feedError = error;
     return [];
   });
@@ -184,22 +181,30 @@ async function collectOverview(tabId) {
   return { candidates: [...feed, ...stories], note };
 }
 
-async function readFeed(tabId) {
-  const [injection] = await chrome.scripting.executeScript({
-    target: { tabId },
-    func: scanFeed,
-  });
-  if (injection?.result?.needsLogin) {
-    throw new FeedError("Instagram needs a sign-in in this Chrome profile. Sign in, then try again.");
+async function readFeed(tabId, query, apiKey) {
+  const posts = new Map();
+  let scroll = false;
+  for (let remaining = 3; remaining >= 0; remaining -= 1) {
+    const [injection] = await chrome.scripting.executeScript({
+      target: { tabId }, func: scanFeed, args: [[...posts.keys()], scroll],
+    });
+    if (injection?.result?.needsLogin) {
+      throw new FeedError("Instagram needs a sign-in in this Chrome profile. Sign in, then try again.");
+    }
+    const batch = injection?.result?.posts || [];
+    if (!batch.length) break;
+    for (const post of batch) posts.set(post.path, post);
+
+    if (!apiKey || !remaining) break;
+    scroll = await shouldScrollFeed([...posts.values()], query, apiKey, remaining).catch(() => false);
+    if (!scroll) break;
   }
-  if (!injection?.result?.posts?.length) {
-    throw new FeedError("I couldn’t find readable posts in the Instagram feed. Try again.");
-  }
-  return injection.result.posts;
+  if (!posts.size) throw new FeedError("I couldn’t find readable posts in the Instagram feed. Try again.");
+  return [...posts.values()];
 }
 
-async function waitForLoad(tabId) {
-  const deadline = Date.now() + 13_000;
+async function waitForLoad(tabId, timeout = 13_000) {
+  const deadline = Date.now() + timeout;
   while (Date.now() < deadline) {
     const tab = await chrome.tabs.get(tabId);
     if (tab.status === "complete") {
@@ -212,43 +217,61 @@ async function waitForLoad(tabId) {
 }
 
 // Runs inside the one inactive Instagram tab created by the extension.
-async function scanFeed() {
-  const posts = new Map();
+async function scanFeed(knownPaths, scroll) {
+  const known = new Set(knownPaths);
+  const selector = "main article, main [role=article], article";
   const looksSignedOut = () => /\/(accounts\/(login|onetap)|challenge|checkpoint)(\/|$)/.test(location.pathname) ||
     Boolean(document.querySelector('input[name="password"]'));
+  const postPath = (article) => [...article.querySelectorAll("a[href]")].find((link) =>
+    link.origin === location.origin && /^\/(?:[\w.]+\/)?(?:p|reels?)\/[\w-]+\/?$/.test(link.pathname))?.pathname;
+  if (scroll) {
+    const lastKnown = [...document.querySelectorAll(selector)].filter((article) => {
+      const bottom = article.getBoundingClientRect().bottom;
+      return bottom > 0 && bottom < innerHeight * 2 && known.has(postPath(article));
+    }).at(-1);
+    window.scrollBy({ top: Math.max(innerHeight * .85, (lastKnown?.getBoundingClientRect().bottom || 0) - 80), behavior: "instant" });
+  }
 
-  for (let step = 0; step < 5 && posts.size < 12; step += 1) {
+  const deadline = Date.now() + 7500;
+  const batch = new Map();
+  let changedAt;
+  do {
     if (looksSignedOut()) return { needsLogin: true };
-    for (const article of document.querySelectorAll("main article, main [role=article], article")) {
-      const links = [...article.querySelectorAll("a[href]")];
-      const permalink = links.find((link) => /^\/(?:[\w.]+\/)?(?:p|reel)\/[\w-]+\/?$/.test(link.pathname));
-      if (!permalink || posts.has(permalink.pathname)) continue;
+    for (const article of document.querySelectorAll(selector)) {
+      const box = article.getBoundingClientRect();
+      if (box.bottom <= 0 || box.top > innerHeight + 250) continue;
+      const path = postPath(article);
+      if (!path || known.has(path) || batch.has(path)) continue;
 
-      const profile = links.find((link) =>
+      const profile = [...article.querySelectorAll("a[href]")].find((link) =>
         /^\/[\w.]+\/$/.test(link.pathname) &&
         !/^\/(p|reel|reels|explore|accounts|direct|stories)\/$/.test(link.pathname));
       const handle = profile ? "@" + profile.pathname.split("/")[1] : "";
-      const image = [...article.querySelectorAll("img")].find((item) =>
-        !item.closest("header") && item.naturalWidth >= 180 && item.naturalHeight >= 120);
+      const images = [...article.querySelectorAll("img")].filter((item) => {
+        const size = item.getBoundingClientRect();
+        return !item.closest("header") && (item.naturalWidth >= 160 || (size.width >= 160 && size.height >= 130));
+      });
+      const player = article.querySelector("video");
       const caption = article.querySelector("h1, [data-testid='post-caption']")?.textContent.trim() ||
         findCaption(article, handle);
-      if (!image && !caption) continue;
 
-      posts.set(permalink.pathname, {
+      if (!caption && !images.some((image) => image.complete && image.naturalWidth) && !player) continue;
+      changedAt = Date.now();
+      batch.set(path, {
+        path,
+        kind: /\/reels?\//.test(path) ? "reel" : "post",
         handle,
         caption: caption.slice(0, 360),
-        alt: (image?.alt || "").slice(0, 240),
-        imageUrl: image?.currentSrc || "",
+        alt: (images[0]?.alt || "").slice(0, 240),
+        images: [...images.map((image) => image.currentSrc || image.src), player?.poster].filter(Boolean),
+        videoUrl: player?.currentSrc || player?.src || "",
       });
-      if (posts.size === 12) break;
+      if (batch.size >= 8) break;
     }
-    if (step < 4 && posts.size < 12) {
-      if (posts.size) window.scrollBy(0, Math.max(500, window.innerHeight * .85));
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-    }
-  }
-
-  return { posts: [...posts.values()] };
+    if (batch.size >= 8 || (changedAt && Date.now() - changedAt >= 500)) break;
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  } while (Date.now() < deadline);
+  return { posts: [...batch.values()] };
 
   function findCaption(article, handle) {
     if (!handle) return "";
@@ -267,9 +290,8 @@ async function scanFeed() {
 }
 
 async function readImage(source) {
-  if (!source) return null;
-  const url = new URL(source);
-  if (url.protocol !== "https:" || !/(^|\.)(cdninstagram\.com|fbcdn\.net)$/.test(url.hostname)) return null;
+  const url = instagramMediaUrl(source);
+  if (!url) return null;
 
   const response = await fetch(url, {
     credentials: "omit",

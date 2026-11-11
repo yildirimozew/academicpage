@@ -46,7 +46,8 @@ h1 { margin: 0; font-size: 1.15rem; font-weight: 680; letter-spacing: -.035em; }
   border-radius: 12px;
   overflow: hidden;
 }
-.post img { display: block; width: 100%; max-height: 330px; object-fit: contain; background: #eef0ea; }
+.post img, .post video { display: block; width: 100%; max-height: 330px; object-fit: contain; background: #eef0ea; }
+.post a { display: inline-block; margin-top: 4px; font-size: .82rem; color: #28513b; }
 .post > div { padding: 10px 12px; }
 .post h2, .post p { margin: 0; font-size: .9rem; }
 .post h2 { font-weight: 680; color: #28513b; }
