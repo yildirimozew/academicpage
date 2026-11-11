@@ -79,7 +79,7 @@ function observation(units, tick, ours, theirs, kills, lane, selected, bar, cool
 }
 
 async function start() {
-    const response = await fetch("agent.bin?v=bcc39c62");
+    const response = await fetch("agent-bcc39c62.bin");
     if (!response.ok) throw new Error("Could not load the AI opponent");
     const choose = network(new Float32Array(await response.arrayBuffer()));
     await api.load({url: "warlords-duel.swf", autoplay: "on", unmuteOverlay: "hidden", allowScriptAccess: true});
