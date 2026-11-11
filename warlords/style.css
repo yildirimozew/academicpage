@@ -3,5 +3,8 @@ main { width: min(800px, 98vw); margin: 20px auto; }
 h1 { margin: 0 0 12px; font-size: 24px; }
 p { margin: 6px 0; }
 kbd { padding: 1px 5px; border: 1px solid #706a5f; border-radius: 3px; }
+.modes { display: flex; gap: 8px; margin: 10px 0; }
+button { padding: 7px 12px; border: 1px solid #8a8172; border-radius: 5px; background: #302e2a; color: inherit; cursor: pointer; }
+button[aria-pressed="true"] { border-color: #e6bd75; background: #51452f; }
 #status { min-height: 1.4em; color: #e6bd75; margin: 10px 0; }
 ruffle-player { display: block; width: 100%; height: min(600px, 73.5vw); background: #333; }
