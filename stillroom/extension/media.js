@@ -28,12 +28,11 @@ async function resolvePostMedia(tabId, post) {
       // The feed preview remains usable if Instagram cannot open the detail page.
     }
   }
-  const { imageUrl, videoUrl, images: previews, path, ...metadata } = post;
+  const { imageUrl, videoUrl, images: previews, visualImages, path, ...metadata } = post;
   const sources = [...new Set(images.map(instagramMediaUrl).filter(Boolean))];
-  const cachedImage = await readImage(sources[0]).catch(() => null);
   return {
     ...metadata,
-    images: sources.map((source, index) => index === 0 ? cachedImage || source : source),
+    images: sources,
     videoSrc: instagramMediaUrl(video),
     permalink: path ? new URL(path, feedUrl).href : "",
   };
@@ -64,7 +63,8 @@ async function readPostMedia(expectedPath) {
       const name = button.getAttribute("aria-label") || button.getAttribute("title") ||
         button.querySelector("svg[aria-label]")?.getAttribute("aria-label");
       const box = button.getBoundingClientRect();
-      return /^(?:next|next photo|next image|next slide)$/i.test(name || "") &&
+      const normalized = (name || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/ı/g, "i");
+      return /^(?:next|next photo|next image|next slide|ileri|sonraki|sonraki fotograf)$/.test(normalized) &&
         box.width > 0 && box.height > 0 && !button.disabled &&
         !button.closest('[aria-hidden="true"], [aria-disabled="true"]');
     });

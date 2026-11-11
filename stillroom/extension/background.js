@@ -7,17 +7,11 @@ const siteOrigins = new Set([
   "https://stillroom.yildirimozen.com",
 ]);
 const feedUrl = "https://www.instagram.com/";
-const imageTypes = new Set(["image/jpeg", "image/png", "image/webp", "image/avif"]);
+const imageTypes = new Set(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"]);
 const limit = 4;
 const digestPrompt = "Summarize the important updates in the Instagram feed posts and Stories provided. Prioritize meaningful personal updates and useful information. Skip ads and engagement bait. Keep it brief. If the sample has no substantive updates, say so.";
-const maxImageBytes = 750_000;
-const stopWords = new Set(
-  "a an all about at can catch check could daily digest find for from get give i instagram latest me my new of on please post posts see show the this today todays up want what whats would you".split(" ")
-);
-const topicWords = new Map([
-  ["hiking", ["hike", "hiking", "trail", "trek"]],
-  ["photography", ["photography", "photographer", "camera", "portrait"]],
-]);
+const maxImageBytes = 80_000;
+const maxDownloadBytes = 8 * 1024 * 1024;
 
 let activeCheck;
 
@@ -43,7 +37,7 @@ chrome.runtime.onMessageExternal.addListener((request, sender, reply) => {
 
 async function status() {
   const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
-  return { provider: deepseekKey ? "deepseek" : "local" };
+  return { provider: deepseekKey ? "deepseek" : "unconfigured", imageReview: true };
 }
 
 function isClearRequest(query) {
@@ -70,83 +64,73 @@ async function ask(query, overview) {
 async function run(query, overview) {
   const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
 
+  if (!deepseekKey) {
+    return { message: "Add a DeepSeek API key in the extension options to review Instagram images." };
+  }
+
   let tab;
   try {
     tab = await chrome.tabs.create({ url: feedUrl, active: false });
     const { candidates, note } = await collect(tab.id, query, overview, deepseekKey);
-    const result = await choosePosts(candidates, query, deepseekKey, overview);
-    const posts = [];
-    for (const post of result.posts) posts.push(await resolvePostMedia(tab.id, post));
-    await chrome.storage.local.set({ digest: { posts } });
-    const response = present(posts, result);
+    const result = await reviewDigest(tab.id, candidates, query, deepseekKey);
+    await chrome.storage.local.set({ digest: { posts: result.posts } });
+    const response = { message: result.summary, posts: result.posts, imageReview: true };
     if (note) response.message += "\n\n" + note;
     return response;
   } catch (error) {
-    const message = error instanceof FeedError ? error.message : "Instagram didn’t load in time. Try again.";
+    const message = error instanceof FeedError || error instanceof DeepSeekError ? error.message : "The Instagram check couldn’t finish. Try again.";
     return { message };
   } finally {
     if (tab?.id !== undefined) await chrome.tabs.remove(tab.id).catch(() => {});
   }
 }
 
-async function choosePosts(posts, query, apiKey, overview) {
-  let fallback;
-  if (apiKey && posts.length) {
-    try {
-      return await summarizeWithDeepSeek(posts, query, apiKey, limit);
-    } catch (error) {
-      fallback = error instanceof DeepSeekError ? error.message : "DeepSeek didn’t respond.";
-    }
+async function reviewDigest(tabId, candidates, query, apiKey) {
+  const imageCache = new Map();
+  const previews = await prepareReviewImages(candidates, imageCache, 1);
+  if (!previews.length) {
+    return { posts: [], summary: "I couldn’t load any images for DeepSeek to review." };
   }
 
-  if (overview) {
-    const feed = posts.filter((post) => post.kind !== "story");
-    const stories = posts.filter((post) => post.kind === "story");
-    const firstStories = stories.slice(0, limit / 2);
-    const firstFeed = feed.slice(0, limit - firstStories.length);
-    return {
-      posts: [...firstFeed, ...stories.slice(0, limit - firstFeed.length)],
-      summary: (fallback || "Enable DeepSeek in the extension options for summaries.") + " Here’s a sample from this check.",
-    };
+  const shortlist = await summarizeWithDeepSeek(previews, query, apiKey, limit);
+  if (!shortlist.posts.length) return shortlist;
+
+  const details = [];
+  for (const post of shortlist.posts) details.push(await resolvePostMedia(tabId, post));
+  const complete = await prepareReviewImages(details, imageCache, 20);
+  if (!complete.length) {
+    return { posts: [], summary: "I couldn’t load the selected posts’ images for review." };
   }
 
-  return { posts: select(posts, query), fallback };
+  const needsReview = complete.length !== shortlist.posts.length || complete.some((post, index) => {
+    const preview = shortlist.posts[index].visualImages;
+    return post.visualImages.length !== preview.length ||
+      post.visualImages.some((image, imageIndex) => image !== preview[imageIndex]);
+  });
+  const review = needsReview
+    ? await summarizeWithDeepSeek(complete, query, apiKey, limit)
+    : { posts: complete, summary: shortlist.summary };
+  return {
+    summary: review.summary,
+    posts: review.posts.map(({ visualImages, ...post }) => ({ ...post, images: visualImages })),
+  };
 }
 
-function present(posts, { summary, fallback }) {
-  if (summary) return { message: summary, posts };
-  const response = describeResults(posts);
-  if (fallback) response.message = fallback + " Used local matching. " + response.message;
-  return response;
-}
-
-function describeResults(posts) {
-  if (!posts.length) {
-    return { message: "Nothing in the posts I checked matched that request." };
+async function prepareReviewImages(posts, imageCache, perPostLimit) {
+  const entries = posts.map((post) => ({
+    post,
+    sources: [...new Set((post.images || [post.imageUrl]).map(instagramMediaUrl).filter(Boolean))].slice(0, perPostLimit),
+  }));
+  const urls = [...new Set(entries.flatMap(({ sources }) => sources))].filter((url) => !imageCache.has(url));
+  for (let start = 0; start < urls.length; start += 6) {
+    await Promise.all(urls.slice(start, start + 6).map(async (url) => {
+      imageCache.set(url, await readImage(url).catch(() => null));
+    }));
   }
-
-  const noun = posts[0].kind === "story" ? (posts.length === 1 ? "story" : "stories") : (posts.length === 1 ? "post" : "posts");
-  const count = posts.length + " " + noun;
-  return { message: "Found " + count + ".", posts };
-}
-
-function select(posts, prompt) {
-  const query = prompt.toLowerCase().replace(/[’']/g, "");
-  const stories = storyRequest(prompt);
-  if (stories?.length) {
-    return posts.filter((post) => stories.some(([account]) => post.handle === "@" + account)).slice(0, limit);
-  }
-  if (stories) return posts.slice(0, limit);
-  const accounts = query.match(/@[a-z0-9_.]+/g)?.map((account) => account.replace(/\.+$/, "")) ?? [];
-  const terms = query.replace(/@[a-z0-9_.]+/g, "").match(/[\p{L}\p{N}]+/gu)
-    ?.filter((term) => !stopWords.has(term)) ?? [];
-
-  return posts.filter((post) => {
-    const handle = post.handle.toLowerCase();
-    const searchable = (post.caption + " " + post.alt + " " + handle).toLowerCase();
-    return (!accounts.length || accounts.includes(handle)) &&
-      terms.every((term) => (topicWords.get(term) || [term]).some((word) => searchable.includes(word)));
-  }).slice(0, limit);
+  return entries.map(({ post, sources }) => ({
+    ...post,
+    visualImages: sources.map((url) => imageCache.get(url)).filter(Boolean),
+  })).filter((post) => post.visualImages.length);
 }
 
 class FeedError extends Error {}
@@ -309,18 +293,37 @@ async function readImage(source) {
     const { done, value } = await reader.read();
     if (done) break;
     length += value.length;
-    if (length > maxImageBytes) {
+    if (length > maxDownloadBytes) {
       await reader.cancel();
       return null;
     }
     chunks.push(value);
   }
 
-  let binary = "";
-  for (const chunk of chunks) {
-    for (let offset = 0; offset < chunk.length; offset += 8192) {
-      binary += String.fromCharCode(...chunk.subarray(offset, offset + 8192));
+  const file = new Blob(chunks, { type });
+  const supported = type !== "image/avif";
+  if (supported && file.size <= maxImageBytes) return imageDataUrl(file);
+
+  const bitmap = await createImageBitmap(file);
+  try {
+    for (const [side, quality] of [[900, .82], [700, .74], [512, .66], [384, .55]]) {
+      const scale = Math.min(1, side / Math.max(bitmap.width, bitmap.height));
+      const canvas = new OffscreenCanvas(Math.max(1, Math.round(bitmap.width * scale)), Math.max(1, Math.round(bitmap.height * scale)));
+      canvas.getContext("2d").drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      const jpeg = await canvas.convertToBlob({ type: "image/jpeg", quality });
+      if (jpeg.size <= maxImageBytes) return await imageDataUrl(jpeg);
     }
+  } finally {
+    bitmap.close();
   }
-  return "data:" + type + ";base64," + btoa(binary);
+  return null;
+}
+
+async function imageDataUrl(file) {
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  let binary = "";
+  for (let offset = 0; offset < bytes.length; offset += 8192) {
+    binary += String.fromCharCode(...bytes.subarray(offset, offset + 8192));
+  }
+  return "data:" + file.type + ";base64," + btoa(binary);
 }

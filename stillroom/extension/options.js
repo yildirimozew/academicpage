@@ -30,7 +30,7 @@ remove.addEventListener("click", async () => {
   remove.disabled = true;
   try {
     await chrome.storage.local.remove("deepseekKey");
-    await refresh("DeepSeek disabled. The extension will use local matching.");
+    await refresh("DeepSeek disabled. Image review requires a key.");
   } catch {
     await refresh("Couldn’t remove the key.");
   }
@@ -39,7 +39,7 @@ remove.addEventListener("click", async () => {
 async function refresh(message) {
   try {
     const { deepseekKey } = await chrome.storage.local.get("deepseekKey");
-    status.textContent = message || (deepseekKey ? "DeepSeek enabled." : "Local matching is active.");
+    status.textContent = message || (deepseekKey ? "DeepSeek enabled." : "Add a key to enable image review.");
     input.placeholder = deepseekKey ? "Enter a new key to replace the saved key" : "";
     remove.disabled = !deepseekKey;
   } catch {

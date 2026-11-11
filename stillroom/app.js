@@ -46,7 +46,7 @@ function renderPost(post) {
   const card = document.createElement("article");
   card.className = "post";
   const images = (post.images || [post.image]).filter((source) =>
-    /^data:image\/(?:jpeg|png|webp|avif);base64,[a-z0-9+/=]+$/i.test(source || "") || isInstagramMedia(source));
+    /^data:image\/(?:jpeg|png|webp|gif);base64,[a-z0-9+/=]+$/i.test(source || ""));
   for (const [index, source] of images.entries()) {
     const image = document.createElement("img");
     image.src = source;
@@ -99,7 +99,9 @@ async function showStatus() {
     return;
   }
 
-  status.textContent = response.provider === "deepseek" ? "DeepSeek enabled" : "Local matching";
+  status.textContent = !response.imageReview
+    ? "Extension update available"
+    : (response.provider === "deepseek" ? "DeepSeek image review" : "DeepSeek key required");
 }
 
 async function runRequest(action, query) {
@@ -111,20 +113,23 @@ async function runRequest(action, query) {
   if (!oneClick) message("user", query);
   const reply = message("assistant", oneClick ? "Checking feed posts and Stories…" : "Checking…");
   try {
+    const connection = await request("status");
+    if (!connection) {
+      reply.firstChild.textContent = "Open this page in the desktop Chrome profile where the extension is enabled.";
+      return;
+    }
+    if (!connection.imageReview) {
+      reply.firstChild.textContent = "Download the latest extension, replace the installed folder’s files, then click Reload in chrome://extensions to enable image review.";
+      return;
+    }
+
     const response = await request(action, query);
     if (!response) {
-      const connection = await request("status");
-      if (!connection) {
-        reply.firstChild.textContent = "Open this page in the same desktop Chrome profile where the extension is installed and enabled.";
-      } else if (oneClick) {
-        reply.firstChild.textContent = "Chrome can reach the extension, but the extension didn’t answer the summary request. Download the latest extension, replace the installed folder’s files, then click Reload in chrome://extensions.";
-      } else {
-        reply.firstChild.textContent = "Chrome can reach the extension, but this request didn’t finish. Try again.";
-      }
+      reply.firstChild.textContent = "The extension didn’t finish this request. Try again.";
       return;
     }
     reply.firstChild.textContent = response.message;
-    reply.append(...(response.posts || []).map(renderPost));
+    if (response.imageReview) reply.append(...(response.posts || []).map(renderPost));
   } finally {
     send.disabled = false;
     summarize.disabled = false;
