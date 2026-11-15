@@ -1,0 +1,33 @@
+:root { color-scheme: light; font: 16px/1.5 Inter, system-ui, sans-serif; color: #211d1b; background: #fcfaf8; --accent: #a31f24; --line: #e7dfda; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 780px; margin: auto; padding: 28px 20px 48px; }
+header, .row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+header { justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+h1 { font-size: clamp(1.45rem, 5vw, 2rem); margin: 0; letter-spacing: -.045em; }
+a { color: var(--accent); }
+.budgets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.budgets div, details, #player, article { background: white; border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.budgets span, label { display: block; font-size: .85rem; color: #61534d; }
+.budgets strong { font-variant-numeric: tabular-nums; font-size: 1.25rem; }
+summary { cursor: pointer; }
+details label { margin-top: 10px; }
+details p { margin: 6px 0 0; font-size: .85rem; }
+.feed-actions, form { margin-top: 16px; }
+form label { margin-bottom: 5px; }
+button, input, select { font: inherit; border-radius: 8px; padding: 8px 10px; }
+input, select { background: white; color: inherit; border: 1px solid #cfc3bc; }
+input { flex: 1 1 220px; min-width: 0; }
+button { background: var(--accent); border: 1px solid transparent; color: white; cursor: pointer; }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 2px solid #7b2931; outline-offset: 2px; }
+#status { color: #61534d; min-height: 1.5em; }
+#results { display: grid; gap: 10px; }
+article { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+article img { width: min(150px, 35%); border-radius: 6px; }
+article div { flex: 1 1 185px; min-width: 0; overflow-wrap: anywhere; }
+article h2, article p { margin: 0; font-size: .95rem; }
+article p { color: #61534d; }
+#player { position: sticky; top: 4px; z-index: 1; box-shadow: 0 6px 20px #2b160f16; margin-bottom: 12px; }
+#player .row { justify-content: space-between; }
+#player iframe { display: block; width: 100%; aspect-ratio: 16/9; min-height: 200px; max-height: 58vh; border: 0; background: black; margin: 8px 0; }

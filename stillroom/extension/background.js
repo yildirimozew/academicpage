@@ -1,6 +1,6 @@
 "use strict";
 
-importScripts("deepseek.js", "stories.js", "media.js");
+importScripts("deepseek.js", "stories.js", "media.js", "youtube.js");
 
 const siteOrigins = new Set([
   "https://stillroom-instagram-digest.mildtitan4.chatgpt.site",
@@ -25,6 +25,14 @@ function trustedSender(sender) {
 }
 
 chrome.runtime.onMessageExternal.addListener((request, sender, reply) => {
+  if (sender.frameId === 0 && sender.url) {
+    const url = new URL(sender.url);
+    if (url.origin === "https://yildirimozen.com" && ["/youtube/", "/youtube/index.html"].includes(url.pathname)) {
+      if (!["youtubeStatus", "youtubeReview"].includes(request?.action)) return false;
+      youtubeReview(request).then(reply, () => reply({ error: "Couldn’t read the extension settings." }));
+      return true;
+    }
+  }
   if (!trustedSender(sender) || !["status", "ask", "summarize"].includes(request?.action)) return false;
   if (request.action === "ask" &&
       (typeof request.query !== "string" || !request.query.trim() || request.query.length > 250)) return false;

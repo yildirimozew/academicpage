@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' https://accounts.google.com/gsi/style; connect-src https://www.googleapis.com https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com; img-src https://i.ytimg.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Yildirim’s YouTube</title>
+  <link rel="stylesheet" href="./style.css?v=1">
+  <script src="./app.js?v=1" type="module"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Yildirim’s YouTube</h1>
+      <a href="../stillroom/stillroom-extension.zip?v=0.6.0" download>Download extension</a>
+    </header>
+    <section class="budgets" aria-label="Playback budgets">
+      <div><span>Informative</span><strong id="informative"></strong></div>
+      <div><span>Entertainment</span><strong id="entertainment"></strong></div>
+    </section>
+    <details id="setup">
+      <summary>YouTube connection</summary>
+      <label for="client-id">Google OAuth web client ID</label>
+      <div class="row"><input id="client-id" placeholder="…apps.googleusercontent.com" autocomplete="off"><button id="connect">Connect YouTube</button></div>
+      <p><a href="./setup.html">Setup and data use</a></p>
+    </details>
+    <div class="row feed-actions"><button id="refresh">Check subscriptions</button></div>
+    <form id="search">
+      <label for="query">What are you looking for?</label>
+      <div class="row">
+        <input id="query" maxlength="200" placeholder="A topic to learn or a creator to watch" required>
+        <select id="mode" aria-label="Request type">
+          <option value="informative">Informative videos</option>
+          <option value="channels">Informative channels</option>
+          <option value="entertainment">Entertainment videos</option>
+        </select>
+        <button type="submit">Find</button>
+      </div>
+    </form>
+    <p id="status" role="status"></p>
+    <section id="player" hidden aria-label="Video player">
+      <div class="row"><strong id="playing"></strong><button id="close-player">Close player</button></div>
+      <div id="frame"></div>
+      <small>Budget counts while the player is open, including pauses. Close it to stop the timer.</small>
+    </section>
+    <section id="results" aria-label="YouTube results"></section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube digest setup</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body><main>
+  <h1>YouTube digest setup</h1>
+  <ol>
+    <li>Install or update the companion extension from the digest page. In its extension options, configure your DeepSeek key.</li>
+    <li>In <a href="https://console.cloud.google.com/apis/library/youtube.googleapis.com">Google Cloud Console</a>, enable YouTube Data API v3. Configure the OAuth consent screen. If the app is in Testing, add your Google account as a test user.</li>
+    <li>Create an OAuth client of type <strong>Web application</strong>. Add <strong>https://yildirimozen.com</strong> under Authorized JavaScript origins.</li>
+    <li>Copy the public client ID into the digest’s connection settings and click <strong>Connect YouTube</strong>. Read and approve the Google consent screen.</li>
+  </ol>
+  <p>The page requests read-only YouTube access for your subscriptions and search. The access token lives in the current page and goes directly to Google’s API. DeepSeek receives the search text and candidate public YouTube titles and descriptions to classify results. The OAuth client ID and time used today are saved in this browser profile.</p>
+  <p>Limits reset at midnight in Zurich. Time counts while the player is open, and closing the player or leaving the tab stops it. These limits apply within this browser profile. The official YouTube player uses youtube-nocookie.com and needs access to YouTube’s media servers.</p>
+  <p>Video data and playback are provided by YouTube. <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a> · <a href="https://policies.google.com/privacy">Google Privacy Policy</a> · <a href="https://myaccount.google.com/connections">Manage Google account access</a></p>
+  <p><a href="./">Back to the digest</a></p>
+</main></body>
+</html>
