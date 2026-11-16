@@ -8,6 +8,15 @@ const results = $("results");
 const clientId = $("client-id");
 const clientKey = "youtube-oauth-client-v1";
 const categories = ["informative", "entertainment"];
+const uploadTimeFormat = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Zurich",
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZoneName: "short",
+});
 let closePlayer;
 let busy = false;
 
@@ -84,6 +93,17 @@ function render(items, category) {
     const source = document.createElement("p");
     source.textContent = item.channel ? item.channel + " · YouTube" : "YouTube channel";
     text.append(source);
+    if (item.kind === "video" && item.publishedAt) {
+      const published = new Date(item.publishedAt);
+      if (Number.isFinite(published.getTime())) {
+        const date = document.createElement("p");
+        const time = document.createElement("time");
+        time.dateTime = published.toISOString();
+        time.textContent = uploadTimeFormat.format(published);
+        date.append("Published ", time);
+        text.append(date);
+      }
+    }
     if (item.reason) {
       const reason = document.createElement("p");
       reason.textContent = item.reason;
