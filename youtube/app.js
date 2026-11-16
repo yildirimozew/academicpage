@@ -188,6 +188,19 @@ $("search").addEventListener("submit", (event) => {
     } else {
       await extension("youtubeStatus");
     }
+    if (mode === "entertainment") {
+      status.textContent = "Checking recent uploads from your subscriptions…";
+      const recent = await subscriptionVideos();
+      const matches = await classify(recent, query, mode);
+      if (matches.length) {
+        render(matches, "entertainment");
+        status.textContent = matches.length === 1
+          ? "1 recent match from your subscriptions."
+          : matches.length + " recent matches from your subscriptions.";
+        return;
+      }
+      status.textContent = "Searching beyond your subscriptions…";
+    }
     const items = await searchYouTube(query, mode === "channels");
     const selected = await classify(items, query, mode);
     render(selected, mode === "entertainment" ? "entertainment" : "informative");
