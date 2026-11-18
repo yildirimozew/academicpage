@@ -9,7 +9,8 @@ header p { margin: 0; color: #adadb8; }
 #remaining { color: #bf94ff; font-size: 1.4rem; font-variant-numeric: tabular-nums; }
 form { margin-top: 28px; }
 label { display: block; margin-bottom: 6px; font-weight: 650; }
-input, button { font: inherit; border-radius: 7px; padding: 10px 14px; }
+input, select, button { font: inherit; border-radius: 7px; padding: 10px 14px; }
+select { border: 1px solid #50505c; background: #18181b; color: inherit; }
 input { min-width: 0; flex: 1 1 220px; border: 1px solid #50505c; background: #18181b; color: inherit; }
 button { border: 1px solid transparent; background: #9146ff; color: #fff; font-weight: 650; cursor: pointer; }
 button:hover:enabled { background: #772ce8; }

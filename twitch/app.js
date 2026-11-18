@@ -1,25 +1,37 @@
-import { balance, watch } from "./budget.js";
+import { balance, watch } from "./budget.js?v=2";
 
 const $ = (id) => document.getElementById(id);
 const status = $("status");
 let closePlayer;
 let running = false;
 
-export function channelName(value) {
+export function streamTarget(value, platform) {
   const text = value.trim();
-  if (!text) return "";
-  if (/^(?:https?:\/\/)?(?:www\.)?twitch\.tv\//i.test(text)) {
+  if (!text || !["twitch", "kick"].includes(platform)) return null;
+  let channel = text.replace(/^@/, "");
+  if (/^(?:https?:\/\/)?(?:www\.)?(?:twitch\.tv|kick\.com)\//i.test(text)) {
     try {
       const url = new URL(/^https?:\/\//i.test(text) ? text : "https://" + text);
-      if (!["twitch.tv", "www.twitch.tv"].includes(url.hostname) || url.username || url.password) return "";
-      const match = url.pathname.match(/^\/([a-z0-9_]{1,25})\/?$/i);
-      return match ? match[1].toLowerCase() : "";
+      if (url.username || url.password || url.port) return null;
+      const hosts = { "twitch.tv": "twitch", "www.twitch.tv": "twitch", "kick.com": "kick", "www.kick.com": "kick" };
+      platform = hosts[url.hostname];
+      if (!platform) return null;
+      const match = url.pathname.match(/^\/([a-z0-9_-]+)\/?$/i);
+      if (!match) return null;
+      channel = match[1];
     } catch {
-      return "";
+      return null;
     }
   }
-  const name = text.replace(/^@/, "");
-  return /^[a-z0-9_]{1,25}$/i.test(name) ? name.toLowerCase() : "";
+  const valid = platform === "twitch" ? /^[a-z0-9_]{1,25}$/i : /^[a-z0-9_-]{1,25}$/i;
+  return valid.test(channel) ? { channel: channel.toLowerCase(), platform } : null;
+}
+
+export function embedUrl({ channel, platform }, parent) {
+  if (platform === "kick") {
+    return "https://player.kick.com/" + encodeURIComponent(channel) + "?autoplay=false";
+  }
+  return "https://player.twitch.tv/?" + new URLSearchParams({ channel, parent, autoplay: "false" });
 }
 
 function updateBudget() {
@@ -35,30 +47,26 @@ function stop() {
 $("streamer-form").addEventListener("submit", (event) => {
   event.preventDefault();
   if (running) return;
-  const channel = channelName($("streamer").value);
-  if (!channel) {
-    status.textContent = "Enter a Twitch username or a channel link such as twitch.tv/username.";
+  const target = streamTarget($("streamer").value, $("platform").value);
+  if (!target) {
+    status.textContent = "Enter a username for the selected platform, or a Twitch or Kick channel link.";
     return;
   }
 
+  $("platform").value = target.platform;
   status.textContent = "";
   running = true;
   $("watch").disabled = true;
   try {
     closePlayer = watch("twitch", {
       start() {
-        const parameters = new URLSearchParams({
-          channel,
-          parent: location.hostname,
-          autoplay: "false",
-        });
         const frame = document.createElement("iframe");
-        frame.src = "https://player.twitch.tv/?" + parameters;
-        frame.title = channel + " on Twitch";
+        frame.src = embedUrl(target, location.hostname);
+        frame.title = target.channel + " on " + (target.platform === "kick" ? "Kick" : "Twitch");
         frame.allowFullscreen = true;
         frame.allow = "fullscreen; encrypted-media; picture-in-picture";
         $("frame").replaceChildren(frame);
-        $("channel").textContent = channel;
+        $("channel").textContent = target.channel + " · " + (target.platform === "kick" ? "Kick" : "Twitch");
         $("player").hidden = false;
         $("close").focus();
       },

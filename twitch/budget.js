@@ -30,9 +30,9 @@ export function watch(category, { start, update, end }) {
   };
 
   void navigator.locks.request(storageKey, { ifAvailable: true }, async (lock) => {
-    if (!lock) throw new Error("Close the player in your other Twitch tab first.");
+    if (!lock) throw new Error("Close the player in your other Twitch or Kick tab first.");
     if (cancelled) return;
-    if (!balance(category)) throw new Error("You’ve used today’s " + category + " budget.");
+    if (!balance(category)) throw new Error("You’ve used today’s 15-minute streaming budget.");
 
     function reserve() {
       const day = today();
