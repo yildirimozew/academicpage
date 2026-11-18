@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src https://player.twitch.tv; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Yildirim’s Twitch</title>
+  <link rel="stylesheet" href="./style.css?v=1">
+  <script src="./app.js?v=1" type="module"></script>
+</head>
+<body>
+  <main>
+    <header><h1>Yildirim’s Twitch</h1><p><strong id="remaining">15:00</strong> left today</p></header>
+    <form id="streamer-form">
+      <label for="streamer">Streamer</label>
+      <div class="row">
+        <input id="streamer" placeholder="Streamer name or twitch.tv link" maxlength="100" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+        <button id="watch" type="submit">Watch</button>
+      </div>
+    </form>
+    <p class="hint">15 minutes shared across all streamers, resetting at midnight Zurich time. Time counts while the player is open, including pauses and offline streams. Close it to stop the timer.</p>
+    <p id="status" role="status"></p>
+    <section id="player" hidden aria-label="Twitch player">
+      <div class="row player-heading"><h2 id="channel"></h2><button id="close" type="button">Close player</button></div>
+      <div class="player-scroll"><div id="frame"></div></div>
+    </section>
+    <footer>The daily limit applies to this browser profile. Twitch provides the stream and player.</footer>
+  </main>
+</body>
+</html>
