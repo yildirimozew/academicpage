@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Kick website blocker",
+  "version": "1.0.0",
+  "description": "Blocks direct Kick website navigation while allowing the official embedded player and its API requests.",
+  "permissions": ["declarativeNetRequest"],
+  "declarative_net_request": {
+    "rule_resources": [
+      { "id": "kick_main_pages", "enabled": true, "path": "rules.json" }
+    ]
+  }
+}

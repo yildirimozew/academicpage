@@ -6,8 +6,8 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src https://player.twitch.tv https://player.kick.com; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Yildirim’s Twitch &amp; Kick</title>
-  <link rel="stylesheet" href="./style.css?v=2">
-  <script src="./app.js?v=2" type="module"></script>
+  <link rel="stylesheet" href="./style.css?v=3">
+  <script src="./app.js?v=3" type="module"></script>
 </head>
 <body>
   <main>
@@ -25,6 +25,10 @@
     </form>
     <p class="hint">15 minutes shared across Twitch and Kick, resetting at midnight Zurich time. Time counts while the player is open, including pauses and offline streams. Close it to stop the timer.</p>
     <p id="status" role="status"></p>
+    <details id="kick-setup" hidden>
+      <summary>Kick blocked by your hosts file?</summary>
+      <p>Kick’s player needs API access to kick.com. Install the <a href="./kick-site-blocker.zip" download>Kick website blocker</a> in Chrome before removing the kick.com and www.kick.com hosts entries. It blocks direct Kick pages while allowing the embedded player’s requests. Read the included setup instructions. The blocker applies only in Chrome profiles where you enable it.</p>
+    </details>
     <section id="player" hidden aria-label="Stream player">
       <div class="row player-heading"><h2 id="channel"></h2><button id="close" type="button">Close player</button></div>
       <div class="player-scroll"><div id="frame"></div></div>

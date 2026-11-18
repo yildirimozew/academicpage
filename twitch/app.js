@@ -40,6 +40,13 @@ function updateBudget() {
   $("watch").disabled = running || remaining === 0;
 }
 
+function showKickSetup() {
+  const target = streamTarget($("streamer").value, $("platform").value);
+  $("kick-setup").hidden = (target?.platform || $("platform").value) !== "kick";
+}
+$("platform").addEventListener("change", showKickSetup);
+$("streamer").addEventListener("input", showKickSetup);
+
 function stop() {
   closePlayer?.();
 }
@@ -54,6 +61,7 @@ $("streamer-form").addEventListener("submit", (event) => {
   }
 
   $("platform").value = target.platform;
+  showKickSetup();
   status.textContent = "";
   running = true;
   $("watch").disabled = true;
@@ -63,6 +71,7 @@ $("streamer-form").addEventListener("submit", (event) => {
         const frame = document.createElement("iframe");
         frame.src = embedUrl(target, location.hostname);
         frame.title = target.channel + " on " + (target.platform === "kick" ? "Kick" : "Twitch");
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
         frame.allowFullscreen = true;
         frame.allow = "fullscreen; encrypted-media; picture-in-picture";
         $("frame").replaceChildren(frame);
