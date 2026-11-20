@@ -1,5 +1,5 @@
 import { extensionId } from "../stillroom/extension-id.js";
-import { connect, connected, loadGoogle, searchYouTube, subscriptionVideos } from "./catalog.js?v=4";
+import { connect, connected, loadGoogle, searchYouTube, subscriptionVideos } from "./catalog.js?v=5";
 import { balance, watch } from "./budget.js";
 
 const $ = (id) => document.getElementById(id);
@@ -210,21 +210,30 @@ $("search").addEventListener("submit", (event) => {
     } else {
       await extension("youtubeStatus");
     }
+    let subscriptionMatches = [];
     if (mode === "entertainment") {
       status.textContent = "Checking recent uploads from your subscriptions…";
-      const recent = await subscriptionVideos(period);
-      const matches = await classify(recent, query, mode);
-      if (matches.length) {
-        render(matches, "entertainment");
-        status.textContent = matches.length === 1
-          ? "1 recent match from your subscriptions."
-          : matches.length + " recent matches from your subscriptions.";
+      const recent = await subscriptionVideos(period, query);
+      subscriptionMatches = await classify(recent, query, mode);
+      if (subscriptionMatches.length >= 6) {
+        render(subscriptionMatches, "entertainment");
+        status.textContent = "6 matches from your subscriptions.";
         return;
       }
-      status.textContent = "Searching beyond your subscriptions…";
+      status.textContent = "Checking matching channels and more videos…";
     }
-    const items = await searchYouTube(query, mode === "channels", period);
-    const selected = await classify(items, query, mode);
+    let items;
+    try {
+      items = await searchYouTube(query, mode === "channels", period, mode);
+    } catch (error) {
+      if (!subscriptionMatches.length) throw error;
+      render(subscriptionMatches, "entertainment");
+      status.textContent = subscriptionMatches.length + " subscription matches. Broader search failed: " + error.message;
+      return;
+    }
+    const seen = new Set(subscriptionMatches.map((item) => item.id));
+    const additional = await classify(items.filter((item) => !seen.has(item.id)), query, mode);
+    const selected = [...subscriptionMatches, ...additional].slice(0, 6);
     render(selected, mode === "entertainment" ? "entertainment" : "informative");
     status.textContent = selected.length ? selected.length + " matches." : "No results met the request.";
   });
