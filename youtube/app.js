@@ -1,5 +1,5 @@
 import { extensionId } from "../stillroom/extension-id.js";
-import { connect, connected, loadGoogle, searchYouTube, subscriptionVideos } from "./catalog.js";
+import { connect, connected, loadGoogle, searchYouTube, subscriptionVideos } from "./catalog.js?v=4";
 import { balance, watch } from "./budget.js";
 
 const $ = (id) => document.getElementById(id);
@@ -161,14 +161,15 @@ async function run(label, operation) {
 }
 
 function checkSubscriptions() {
+  const period = $("upload-date").value;
   return run("Checking recent subscription uploads…", async () => {
     await extension("youtubeStatus");
-    const items = await subscriptionVideos();
+    const items = await subscriptionVideos(period);
     const selected = await classify(items, "", "informative");
     render(selected, "informative");
     status.textContent = selected.length
       ? selected.length + " informative picks from the latest subscription uploads."
-      : "No informative uploads matched in the latest seven days.";
+      : "No informative uploads matched the selected upload dates.";
   });
 }
 
@@ -200,6 +201,7 @@ $("search").addEventListener("submit", (event) => {
   const query = $("query").value.trim();
   if (!query) return;
   const mode = $("mode").value;
+  const period = $("upload-date").value;
   void run("Looking for matches…", async () => {
     if (!connected()) throw new Error("Connect YouTube to continue.");
     if (mode === "channels") {
@@ -210,7 +212,7 @@ $("search").addEventListener("submit", (event) => {
     }
     if (mode === "entertainment") {
       status.textContent = "Checking recent uploads from your subscriptions…";
-      const recent = await subscriptionVideos();
+      const recent = await subscriptionVideos(period);
       const matches = await classify(recent, query, mode);
       if (matches.length) {
         render(matches, "entertainment");
@@ -221,7 +223,7 @@ $("search").addEventListener("submit", (event) => {
       }
       status.textContent = "Searching beyond your subscriptions…";
     }
-    const items = await searchYouTube(query, mode === "channels");
+    const items = await searchYouTube(query, mode === "channels", period);
     const selected = await classify(items, query, mode);
     render(selected, mode === "entertainment" ? "entertainment" : "informative");
     status.textContent = selected.length ? selected.length + " matches." : "No results met the request.";

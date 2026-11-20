@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' https://accounts.google.com/gsi/style; connect-src https://www.googleapis.com https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/ https://www.youtube-nocookie.com; img-src https://i.ytimg.com; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Yildirim’s YouTube</title>
   <link rel="stylesheet" href="./style.css?v=1">
-  <script src="./app.js?v=3" type="module"></script>
+  <script src="./app.js?v=4" type="module"></script>
 </head>
 <body>
   <main>
@@ -25,7 +25,17 @@
       <div class="row"><input id="client-id" placeholder="…apps.googleusercontent.com" autocomplete="off"><button id="connect">Connect YouTube</button></div>
       <p><a href="./setup.html">Setup and data use</a></p>
     </details>
-    <div class="row feed-actions"><button id="refresh">Check subscriptions</button></div>
+    <div class="row feed-actions">
+      <button id="refresh">Check subscriptions</button>
+      <label for="upload-date">Uploaded</label>
+      <select id="upload-date" aria-describedby="date-help">
+        <option value="today">Today</option>
+        <option value="week">This week</option>
+        <option value="recent" selected>Last 7 days</option>
+        <option value="any">Any time</option>
+      </select>
+    </div>
+    <small id="date-help">Zurich time · Week starts Monday · Applies to videos</small>
     <form id="search">
       <label for="query">What are you looking for?</label>
       <div class="row">

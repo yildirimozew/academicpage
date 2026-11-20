@@ -1,3 +1,5 @@
+import { uploadWindow, withinWindow } from "./date-filter.js?v=4";
+
 const scope = "https://www.googleapis.com/auth/youtube.readonly";
 const googleScript = "https://accounts.google.com/gsi/client";
 let authentication;
@@ -103,7 +105,8 @@ async function videoDetails(ids) {
   }));
 }
 
-export async function subscriptionVideos() {
+export async function subscriptionVideos(period = "recent") {
+  const window = uploadWindow(period);
   const channelIds = new Set();
   let pageToken;
   do {
@@ -119,11 +122,10 @@ export async function subscriptionVideos() {
   const playlists = channelPages.flatMap((page) =>
     page.items.map((item) => item.contentDetails.relatedPlaylists.uploads).filter(Boolean));
   const latest = new Map();
-  const since = Date.now() - 7 * 24 * 60 * 60 * 1000;
 
   const pages = await parallelBatches(playlists, async (playlistId) => {
     try {
-      return await youtube("playlistItems", { part: "contentDetails", playlistId, maxResults: "8" });
+      return await youtube("playlistItems", { part: "contentDetails", playlistId, maxResults: "50" });
     } catch (error) {
       if (error.status === 404) return { items: [] };
       throw error;
@@ -132,19 +134,27 @@ export async function subscriptionVideos() {
   for (const page of pages) {
     for (const { contentDetails: upload } of page.items) {
       const publishedAt = Date.parse(upload.videoPublishedAt);
-      if (publishedAt >= since) latest.set(upload.videoId, publishedAt);
+      if (withinWindow(upload.videoPublishedAt, window)) latest.set(upload.videoId, publishedAt);
     }
   }
   const ids = [...latest].sort((a, b) => b[1] - a[1]).slice(0, 40).map(([id]) => id);
-  return videoDetails(ids);
+  return (await videoDetails(ids)).filter((item) => withinWindow(item.publishedAt, window));
 }
 
-export async function searchYouTube(query, channels) {
+export async function searchYouTube(query, channels, period = "any") {
+  const window = channels ? null : uploadWindow(period);
   const page = await youtube("search", {
     part: "snippet", q: query, type: channels ? "channel" : "video", maxResults: "20",
-    ...(channels ? {} : { videoEmbeddable: "true", videoSyndicated: "true" }),
+    ...(channels ? {} : {
+      videoEmbeddable: "true", videoSyndicated: "true",
+      ...(window.after ? { publishedAfter: window.after } : {}),
+      publishedBefore: window.before,
+    }),
   });
-  if (!channels) return videoDetails([...new Set(page.items.map((item) => item.id.videoId).filter(Boolean))]);
+  if (!channels) {
+    const videos = await videoDetails([...new Set(page.items.map((item) => item.id.videoId).filter(Boolean))]);
+    return videos.filter((item) => withinWindow(item.publishedAt, window));
+  }
   return page.items.map(({ id, snippet }) => ({
     id: id.channelId,
     kind: "channel",
