@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "courses": [],
+  "semesters": [
+    {
+      "id": "2025W",
+      "name": "Autumn 2025"
+    },
+    {
+      "id": "2026S",
+      "name": "Spring 2026"
+    },
+    {
+      "id": "2026W",
+      "name": "Autumn 2026"
+    },
+    {
+      "id": "2027S",
+      "name": "Spring 2027"
+    }
+  ]
+}

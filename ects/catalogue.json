@@ -1,0 +1,3085 @@
+{
+  "fetchedAt": "2026-11-21",
+  "sources": [
+    "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/sucheLehrangebot.view?abschnittId=122778&ansicht=1&lang=en&seite=0&semkez=2026W",
+    "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/sucheLehrangebot.view?abschnittId=120252&ansicht=1&lang=en&seite=0&semkez=2026S"
+  ],
+  "courses": [
+    {
+      "code": "263-3010-00",
+      "title": "Big Data",
+      "ects": 10.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203431&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3845-00",
+      "title": "Data Management Systems",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Systems Software"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204075&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0535-00",
+      "title": "Advanced Machine Learning",
+      "ects": 10.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203151&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-1414-00",
+      "title": "System Security",
+      "ects": 7.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Systems Software"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204253&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2800-00",
+      "title": "Design of Parallel and High-Performance Computing",
+      "ects": 9.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Systems Software"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202575&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2800-10",
+      "title": "Design of Parallel and High-Performance Computing - Theory",
+      "ects": 4.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Systems Software"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203225&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3210-00",
+      "title": "Deep Learning",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Vision"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203295&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "261-5110-00",
+      "title": "Optimization for Data Science",
+      "ects": 10.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202589&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5210-00",
+      "title": "Probabilistic Artificial Intelligence",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204292&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-3005-00",
+      "title": "Natural Language Processing",
+      "ects": 7.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204564&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2400-00",
+      "title": "Reliable and Trustworthy Artificial Intelligence",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203746&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5005-00",
+      "title": "Artificial Intelligence in Education",
+      "ects": 3.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203445&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5056-00",
+      "title": "Applications of Deep Learning on Graphs",
+      "ects": 4.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202897&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5059-00",
+      "title": "Large-Scale AI Engineering",
+      "ects": 3.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202907&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197790&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5300-00",
+      "title": "Guarantees for Machine Learning",
+      "ects": 7.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204713&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5351-00",
+      "title": "Machine Learning for Genomics",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204520&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5902-00",
+      "title": "Computer Vision",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Vision"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203896&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0423-00",
+      "title": "Neural Network Theory",
+      "ects": 4.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204236&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-4944-20",
+      "title": "Mathematics of Data Science",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204200&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0237-00",
+      "title": "Concepts of Object-Oriented Programming",
+      "ects": 8.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203661&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0463-00",
+      "title": "Security Engineering",
+      "ects": 7.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202671&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4640-00",
+      "title": "Network Security",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Networking"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204555&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4658-00",
+      "title": "Privacy Enhancing Technologies",
+      "ects": 7.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203996&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0579-00",
+      "title": "Hardware Security",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204091&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-1411-00",
+      "title": "Security of Wireless Networks",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Networking"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203375&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2520-00",
+      "title": "Formal Foundations of Programming Languages",
+      "ects": 7.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202874&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2816-00",
+      "title": "Exploiting and Reasoning about Concurrency",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202500&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4665-00",
+      "title": "Zero-Knowledge Proofs",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203251&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4657-00",
+      "title": "Advanced Encryption Schemes",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=206399&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-1425-00",
+      "title": "Geometry: Combinatorics and Algorithms",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204238&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4500-00",
+      "title": "Advanced Algorithms",
+      "ects": 9.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202664&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0417-00",
+      "title": "Information Theory I",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203897&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4511-00",
+      "title": "Projects in Topological Data Analysis",
+      "ects": 4.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203248&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3071-00",
+      "title": "Structural Graph Theory",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204829&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3054-14",
+      "title": "Probabilistic Methods in Combinatorics",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204178&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3055-64",
+      "title": "Algebraic Methods in Combinatorics",
+      "ects": 5.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204084&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3901-00",
+      "title": "Linear & Combinatorial Optimization",
+      "ects": 10.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203698&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "402-0448-01",
+      "title": "Quantum Information Processing I: Concepts",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204490&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4512-00",
+      "title": "Formalizing Analysis of Algorithms",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=206318&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0543-01",
+      "title": "Computer Graphics",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202984&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "103-1100-00",
+      "title": "Computer Vision and Artificial Intelligence for Autonomous Cars",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Vision"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204677&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0546-00",
+      "title": "Physically-Based Simulation in Computer Graphics",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203512&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5905-00",
+      "title": "Mixed Reality",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Vision"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202772&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-2211-00",
+      "title": "Seminar in Computer Architecture",
+      "ects": 2.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204195&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197577&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-4601-00",
+      "title": "Current Topics in Information Security",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202790&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-5051-00",
+      "title": "Advanced Topics in Machine Learning",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203840&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-5701-00",
+      "title": "Seminar in Advanced Topics in Vision",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203799&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2100-00",
+      "title": "Research Topics in Software Engineering",
+      "ects": 2.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204225&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198951&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2931-00",
+      "title": "AI Security Seminar: From Code to Agent Security",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=206540&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3504-00",
+      "title": "Hardware Acceleration for Data Processing",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202710&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3713-00",
+      "title": "Advanced Topics in Human-Centric Computer Vision",
+      "ects": 2.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204421&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3856-00",
+      "title": "Systems for AI Seminar",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202628&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4410-00",
+      "title": "Seminar on Advanced Graph Algorithms and Optimization",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204300&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4902-00",
+      "title": "Seminar on User-Centered Programming Interfaces",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203224&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5057-00",
+      "title": "From Publications to Clinical Practice: Translating Medical Research in the Era of AI",
+      "ects": 3.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204691&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5100-00",
+      "title": "Topics in Medical Machine Learning",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202975&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5702-00",
+      "title": "Seminar on Digital Humans",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204646&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5908-00",
+      "title": "Advanced Topics in Embodied Intelligence",
+      "ects": 2.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204823&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197947&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0811-00",
+      "title": "Applied Security Laboratory",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Practical Work"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204155&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-0650-00",
+      "title": "Practical Work",
+      "ects": 8.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Practical Work"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204550&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197546&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0575-00",
+      "title": "Advanced Topics in Communication Networks",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Networking"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202610&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-0006-00",
+      "title": "Algorithms Lab",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Interfocus Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203184&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-0009-00",
+      "title": "Information Security Lab",
+      "ects": 8.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Interfocus Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202983&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0293-00",
+      "title": "Wireless Networking and Mobile Computing",
+      "ects": 4.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203545&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-2111-00",
+      "title": "Training for Programming Coaches",
+      "ects": 1.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204211&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-0600-00",
+      "title": "Research in Computer Science",
+      "ects": 5.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ],
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually chose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202821&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198624&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5053-00",
+      "title": "Technology Investing",
+      "ects": 3.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=203744&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5054-00",
+      "title": "Patenting Digital Innovations",
+      "ects": 1.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204650&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5055-00",
+      "title": "Talent Kick: From Student to Entrepreneur",
+      "ects": 3.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ],
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually chose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=204897&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198384&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0820-00",
+      "title": "Information Technology in Practice",
+      "ects": 5.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ],
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually chose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=205678&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198687&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5912-00",
+      "title": "Empirical Research Methods for Computer Science",
+      "ects": 2.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=206443&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "363-1207-00",
+      "title": "Extended Reality for Value Creation in Businesses",
+      "ects": 6.0,
+      "offerings": [
+        "2026W"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually choose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=205899&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-0800-00",
+      "title": "Master's Thesis",
+      "ects": 30.0,
+      "offerings": [
+        "2026W",
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Master's Thesis"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=202709&semkez=2026W&ansicht=LEHRVERANSTALTUNGEN&lang=en",
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199170&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3855-00",
+      "title": "Cloud Computing Architecture",
+      "ects": 9.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199590&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0558-00",
+      "title": "Principles of Distributed Computing",
+      "ects": 7.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Networking"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Systems Software"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198389&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3800-00",
+      "title": "Advanced Operating Systems",
+      "ects": 7.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Data Management Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Systems Software"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199676&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3710-00",
+      "title": "Machine Perception",
+      "ects": 8.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Vision"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199615&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5354-00",
+      "title": "Large Language Models",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Data Management"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198774&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0579-00",
+      "title": "3D Vision",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Vision"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199357&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "261-5120-00",
+      "title": "Machine Learning for Health Care",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199318&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5000-00",
+      "title": "Computational Semantics for Natural Language Processing",
+      "ects": 6.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198830&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5051-00",
+      "title": "AI Center Projects in Machine Learning Research",
+      "ects": 4.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197876&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5052-00",
+      "title": "Interactive Machine Learning: Visualization & Explainability",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Vision"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198654&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5255-00",
+      "title": "Foundations of Reinforcement Learning",
+      "ects": 7.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197840&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5352-00",
+      "title": "Advanced Formal Language Theory",
+      "ects": 6.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199534&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0434-10",
+      "title": "Mathematics of Information",
+      "ects": 9.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198318&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3632-00",
+      "title": "Computational Statistics",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198730&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5353-00",
+      "title": "Philosophy of Language and Computation I",
+      "ects": 3.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=201420&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5911-00",
+      "title": "Robot Learning: From Fundamentals to Foundation Models",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Machine Intelligence",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=201901&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2815-00",
+      "title": "Automated Software Testing",
+      "ects": 7.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198365&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4660-00",
+      "title": "Applied Cryptography",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198098&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0408-00",
+      "title": "Cryptographic Protocols",
+      "ects": 6.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198946&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-2812-00",
+      "title": "Program Verification",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199656&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4600-00",
+      "title": "Formal Methods for Information Security",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Programming Languages and Software Engineering"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199219&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4656-00",
+      "title": "Digital Signatures",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Secure and Reliable Systems",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Information Security"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197738&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4400-00",
+      "title": "Advanced Graph Algorithms and Optimization",
+      "ects": 10.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198142&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4508-00",
+      "title": "Algorithmic Foundations of Data Science",
+      "ects": 10.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197835&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4509-00",
+      "title": "Complex Network Models",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199804&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4510-00",
+      "title": "Introduction to Topological Data Analysis",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199805&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "272-0300-00",
+      "title": "Algorithmics for Hard Problems",
+      "ects": 5.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199292&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "272-0302-00",
+      "title": "Approximation and Online Algorithms",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198443&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3052-10",
+      "title": "Graph Theory",
+      "ects": 9.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197875&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3902-21",
+      "title": "Network & Integer Optimization",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197996&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3902-25",
+      "title": "Discrete Optimization",
+      "ects": 9.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Theoretical Computer Science",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Theoretical Computer Science"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199885&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0538-00",
+      "title": "Shape Modeling and Geometry Processing",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199336&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5806-00",
+      "title": "Digital Humans",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199704&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5807-00",
+      "title": "Computational Models of Motion",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Core Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198039&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0312-00",
+      "title": "Mobile Health and Activity Monitoring",
+      "ects": 6.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198467&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-5706-00",
+      "title": "Mathematical Foundations of Computer Graphics and Vision",
+      "ects": 5.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197827&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4903-00",
+      "title": "Design in Educational Technology",
+      "ects": 6.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199016&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5704-00",
+      "title": "Artificial Intelligence for Digital Characters",
+      "ects": 4.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Majors",
+          "Major in Visual and Interactive Computing",
+          "Elective Courses"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Computer Graphics"
+        ],
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Machine Learning"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199077&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-2603-00",
+      "title": "Seminar on Systems Security",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197608&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-3811-00",
+      "title": "Case Studies from Practice Seminar",
+      "ects": 4.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=200998&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-5704-00",
+      "title": "Advanced Methods in Computer Graphics",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198182&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "261-5113-00",
+      "title": "Computational Challenges in Medical Genomics",
+      "ects": 2.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198301&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3712-00",
+      "title": "Seminar on Human-Performance Capture",
+      "ects": 2.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199311&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-3851-00",
+      "title": "Green Computing",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199668&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4203-00",
+      "title": "Geometry: Combinatorics and Algorithms",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198350&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-4651-00",
+      "title": "Current Topics in Cryptography",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199678&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5157-00",
+      "title": "Pattern matching beyond i.i.d. data",
+      "ects": 2.0,
+      "offerings": [],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199075&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5225-00",
+      "title": "Advanced Topics in Machine Learning and Data Science",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199589&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5904-00",
+      "title": "Deep Learning for Computer Vision: Seminal Work",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198103&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5909-00",
+      "title": "Egocentric Computer Vision: Perception and Understanding from the First-Person View",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199931&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5910-00",
+      "title": "Reinforcement Learning for Understanding and Modeling Human Behavior",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199017&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0559-00",
+      "title": "Seminar in Deep Neural Networks",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198708&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0559-10",
+      "title": "Seminar in Computer Networks",
+      "ects": 2.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199374&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "401-3900-16",
+      "title": "Advanced Topics in Discrete Optimization",
+      "ects": 4.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198063&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "851-0740-00",
+      "title": "AI, Law, and Policy",
+      "ects": 3.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198363&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-5256-00",
+      "title": "AI for Mathematics and Optimization",
+      "ects": 3.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Seminar"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199076&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "252-0570-00",
+      "title": "Game Programming Laboratory",
+      "ects": 10.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Practical Work"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=198291&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "227-0128-00",
+      "title": "Synthesis of Digital Circuits",
+      "ects": 6.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Minors",
+          "Minor in Systems Software"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197793&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-0007-00",
+      "title": "Advanced Systems Lab",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Interfocus Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199826&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-0008-00",
+      "title": "Computational Intelligence Lab",
+      "ects": 8.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Interfocus Courses"
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=197926&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    },
+    {
+      "code": "263-5058-00",
+      "title": "Technology and Entrepreneurship",
+      "ects": 3.0,
+      "offerings": [
+        "2026S"
+      ],
+      "paths": [
+        [
+          "Computer Science Master",
+          "Elective Courses Students can individually chose from the entire Master course offerings from ETH Zurich, EPF Lausanne, the University of Zurich and - but only with the consent of the Director of Studies - from all other Swiss universities."
+        ]
+      ],
+      "sources": [
+        "https://www.vvz.ethz.ch/Vorlesungsverzeichnis/lerneinheit.view?lerneinheitId=199958&semkez=2026S&ansicht=LEHRVERANSTALTUNGEN&lang=en"
+      ]
+    }
+  ]
+}
