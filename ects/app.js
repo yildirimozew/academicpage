@@ -1,6 +1,6 @@
 import{CATEGORIES,STATUSES,SEMESTERS,SEED,totals,gpa,gradingFor,categoriesFor,validateState}from'./model.js';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const KEY='eth-cs-ects-v1:'+new URL('.',location.href).pathname;let state={version:1,courses:[],semesters:structuredClone(SEMESTERS)},catalogue=[],showProjected=false,targetSemester='2026W',undoState=null,toastTimer,loadIssue='';
+const KEY='eth-cs-ects-v1:'+new URL('.',location.href).pathname;let state={version:1,courses:[],semesters:structuredClone(SEMESTERS)},catalogue=[],showProjected=false,targetSemester='2026W',undoState=null,toastTimer,selectedCategory=null,loadIssue='';
 let restored=false;
 try{const data=localStorage.getItem(KEY);if(data){state=validateState(JSON.parse(data));restored=true;}}catch{loadIssue='Saved browser data could not be loaded. The saved starting plan is shown. Import a backup to restore another plan.';}
 if(!restored){try{const response=await fetch('./initial-plan.json',{cache:'no-cache'});if(!response.ok)throw Error('Starting plan unavailable');state=validateState(await response.json());}catch{loadIssue='The starting plan could not be loaded. Import a JSON backup or add courses to start.';}}
@@ -19,17 +19,18 @@ function render(){
  const ep=Math.min(earned.total/120*100,100),pp=Math.min(projected.total/120*100,100);$('#overall-bar').innerHTML=`<div class="earned" style="width:${ep}%"></div><div class="future" style="width:${Math.max(pp-ep,0)}%"></div>`;
  $('#degree-note').textContent=projected.complete?'All tracked requirements covered':projected.total>=120?'Check unmet category requirements':'Category requirements also apply';
  $('#projected-note').textContent=`${fmt(Math.max(projected.total-earned.total,0))} pending / planned ECTS included`;
- $('#requirements').innerHTML=shown.requirements.map(r=>`<div class="requirement ${r.met?'met':''}" title="${esc(r.detail)}"><div class="req-label">${esc(r.label)}${r.met?'<span class="req-check" aria-label="Met">✓</span>':''}</div><div class="req-value">${fmt(r.value)} <span>/ ${r.min}</span></div><div class="req-bar"><span style="width:${Math.min(r.value/r.min*100,100)}%"></span></div><div class="req-detail">${esc(r.detail)}</div></div>`).join('');
+ $('#requirements').innerHTML=shown.requirements.map(r=>`<button type="button" class="requirement ${r.met?'met':''}" data-category="${r.key}" aria-label="View courses in ${esc(r.label)}" aria-haspopup="dialog" title="View courses · ${esc(r.detail)}"><span class="req-label">${esc(r.label)}${r.met?'<span class="req-check" aria-label="Met">✓</span>':''}</span><span class="req-value">${fmt(r.value)} <span>/ ${r.min}</span></span><span class="req-bar"><span style="width:${Math.min(r.value/r.min*100,100)}%"></span></span><span class="req-detail">${esc(r.detail)}</span></button>`).join('');
  $('#courses-minimum').textContent=`Course subtotal ${fmt(shown.coursesTotal)} / 76 ECTS · ${showProjected?'including scheduled plans':'passed courses'}`;
  $('#warnings').innerHTML=shown.warnings.map(x=>`<div class="warning">${esc(x)}</div>`).join('');
  const semesters=[...state.semesters];if(state.courses.some(c=>c.semester==='unscheduled'))semesters.push({id:'unscheduled',name:'Unscheduled'});
  $('#board').innerHTML=semesters.map(s=>{
   const courses=state.courses.filter(c=>c.semester===s.id),all=courses.filter(c=>c.status!=='failed').reduce((a,c)=>a+c.ects,0),passed=courses.filter(c=>c.status==='passed').reduce((a,c)=>a+c.ects,0);
   return`<section class="semester ${s.id==='2026W'?'current':''}" data-semester="${esc(s.id)}" aria-label="${esc(s.name)}"><div class="semester-header"><h3>${esc(s.name)}</h3><span class="semester-credits"><strong>${fmt(all)}</strong> ECTS</span></div><div class="semester-sub"><span>${courses.length} course${courses.length===1?'':'s'}${passed?' · '+fmt(passed)+' earned':''}</span>${s.id==='2026W'?'<span class="current-label">Current semester</span>':''}</div><div class="course-list">${courses.map(card).join('')||'<div class="empty-semester">Drop courses here<br>or add from the catalogue<button class="text-button" data-add="'+esc(s.id)+'">＋ Add course</button></div>'}</div>${courses.length?'<button class="semester-add" data-add="'+esc(s.id)+'">＋ Add course</button>':''}</section>`;
- }).join('');bindBoard();
+ }).join('');bindBoard();if($('#category-dialog').open)renderCategory();
 }
-function card(c){return`<article class="course-card" draggable="false" data-id="${esc(c.id)}" tabindex="0" aria-label="${esc(c.title)}, ${c.ects} ECTS. Press Enter to edit or move."><div class="course-top"><span class="course-code">${esc(c.code||'CUSTOM COURSE')}</span><button class="edit-card" data-edit="${esc(c.id)}" aria-label="Edit ${esc(c.title)}">⋯</button></div><h4 class="course-name">${esc(c.title)}</h4><div class="course-bottom"><span class="tag ${c.category}">${esc(CATEGORIES[c.category].replace(' · Data Management',''))}</span><span class="course-ects">${fmt(c.ects)} <span style="font-weight:400;color:#8a968f;font-size:10px">ECTS</span></span></div><div class="course-status ${c.status}">${c.status==='passed'?'<span class="status-check">✓</span> ':''}${esc(STATUSES[c.status])}${c.grade?' · '+esc(c.grade):''}</div></article>`;}
+function card(c){return`<article class="course-card" draggable="false" data-id="${esc(c.id)}" tabindex="0" aria-label="${esc(c.title)}, ${c.ects} ECTS. Press Enter to edit or move."><div class="course-top"><span class="course-code">${esc(c.code||'CUSTOM COURSE')}</span><button class="edit-card" data-edit="${esc(c.id)}" aria-label="Edit ${esc(c.title)}">⋯</button></div><h4 class="course-name">${esc(c.title)}</h4><div class="course-bottom"><button type="button" class="tag ${c.category}" data-category="${c.category}" aria-label="View courses in ${esc(CATEGORIES[c.category])}" aria-haspopup="dialog">${esc(CATEGORIES[c.category].replace(' · Data Management',''))}</button><span class="course-ects">${fmt(c.ects)} <span style="font-weight:400;color:#8a968f;font-size:10px">ECTS</span></span></div><div class="course-status ${c.status}">${c.status==='passed'?'<span class="status-check">✓</span> ':''}${esc(STATUSES[c.status])}${c.grade?' · '+esc(c.grade):''}</div></article>`;}
 function bindBoard(){
+ document.querySelectorAll('[data-category]').forEach(b=>b.onclick=e=>{e.stopPropagation();openCategory(b.dataset.category);});
  document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>openCatalogue(b.dataset.add));
  document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=e=>{e.stopPropagation();editCourse(state.courses.find(c=>c.id===b.dataset.edit));});
  document.querySelectorAll('.course-card').forEach(el=>{
@@ -40,6 +41,25 @@ function bindBoard(){
  });
 
 }
+const categoryKeys=key=>key==='major'?['majorCore','majorElective']:key==='core'?['majorCore']:[key];
+const categoryTitle=key=>key==='major'?'Major · Machine Intelligence':key==='core'?'Major · core':CATEGORIES[key];
+function openCategory(key){selectedCategory=key;renderCategory();$('#category-dialog').showModal();}
+function renderCategory(){
+ const keys=categoryKeys(selectedCategory),courses=state.courses.filter(c=>keys.includes(c.category));
+ const earned=totals(courses),projected=totals(courses,true);
+ $('#category-title').textContent=categoryTitle(selectedCategory);
+ $('#category-summary').textContent=`${courses.length} course${courses.length===1?'':'s'} · ${fmt(earned.total)} earned ECTS · ${fmt(projected.total)} projected ECTS`;
+ $('#category-courses').innerHTML=courses.map(c=>{
+  const semester=state.semesters.find(s=>s.id===c.semester)?.name||'Unscheduled';
+  const excluded=c.status==='failed'||(c.status!=='passed'&&c.semester==='unscheduled');
+  return `<button type="button" class="category-course" data-category-edit="${esc(c.id)}" aria-label="Edit ${esc(c.title)}"><span class="category-course-info"><strong>${esc(c.title)}</strong><span class="category-course-meta">${esc(c.code||'Custom course')} · ${esc(semester)}</span><span class="category-course-meta">${esc(CATEGORIES[c.category])} · ${esc(STATUSES[c.status])}${c.grade?' · '+esc(c.grade):''}${excluded?' · Excluded from totals':''}</span></span><span class="category-course-ects">${fmt(c.ects)} <span>ECTS</span></span></button>`;
+ }).join('')||'<p class="empty-results">No courses assigned to this category yet.</p>';
+ document.querySelectorAll('[data-category-edit]').forEach(b=>b.onclick=()=>editCourse(state.courses.find(c=>c.id===b.dataset.categoryEdit)));
+}
+$('#category-browse').onclick=()=>{
+ const filter=selectedCategory==='core'?'majorCore':selectedCategory;
+ $('#category-dialog').close();$('#catalog-search').value='';$('#catalog-category').value=filter;$('#catalog-offering').value='all';openCatalogue();
+};
 function bindPointerDrag(el){
  let start=null,ghost=null,active=false,dropTarget=null;
  el.onpointerdown=e=>{if(e.button!==0||e.target.closest('button,a'))return;start={x:e.clientX,y:e.clientY,id:e.pointerId};};
@@ -63,10 +83,11 @@ function setView(projected){showProjected=projected;for(const [id,active]of[['vi
 $('#view-earned').onclick=()=>setView(false);$('#view-projected').onclick=()=>setView(true);
 function openCatalogue(semester='2026W'){targetSemester=semester;$('#catalog-dialog').showModal();renderCatalogue();$('#catalog-search').focus();}
 $('#add-course').onclick=()=>openCatalogue();
+$('#catalog-category').insertAdjacentHTML('beforeend','<option value="major">Major · all courses</option>');
 for(const [key,value]of Object.entries(CATEGORIES))$('#catalog-category').insertAdjacentHTML('beforeend',`<option value="${key}">${esc(value)}</option>`);
 function renderCatalogue(){
  const q=$('#catalog-search').value.toLowerCase().trim(),category=$('#catalog-category').value,offering=$('#catalog-offering').value;
- const rows=catalogue.filter(c=>(c.title.toLowerCase().includes(q)||c.code.includes(q))&&(category==='all'||categoriesFor(c).includes(category)||(c.category===category))&&(offering==='all'||c.offerings?.includes(offering)));
+ const rows=catalogue.filter(c=>(c.title.toLowerCase().includes(q)||c.code.includes(q))&&(category==='all'||categoryKeys(category).some(key=>categoriesFor(c).includes(key)||c.category===key))&&(offering==='all'||c.offerings?.includes(offering)));
  $('#catalog-count').textContent=`${rows.length} courses`;
  $('#catalog-results').innerHTML=rows.map(c=>{
  const added=state.courses.some(x=>x.code===c.code),cat=c.category||categoriesFor(c)[0],seasons=(c.offerings||[]).map(s=>s.endsWith('W')?'Autumn 2026':'Spring 2026').join(' · ');
